@@ -12,7 +12,7 @@ class MessageSniper {
     this.originalMessage = message;
   }
 
-  snipeDeletedMessage() {
+  snipeDeletedMessage(Discord) {
     const responses = [
       "There are no messages to snipe!",
       "Unfortunately, there's no message to snipe.",
@@ -20,11 +20,22 @@ class MessageSniper {
       "Well that's quite disappointing, there's no message to snipe.",
       "Sadly, there's no message to snipe...",
     ];
-    if (this.deletedMessage) return this.deletedMessage;
+    if (this.deletedMessage) {
+      const user = this.deletedMessage.author;
+      const embed = new Discord.MessageEmbed()
+        .setAuthor({
+          name: String(user.tag),
+          iconURL: user.avatarURL(),
+        })
+        .setDescription(this.deletedMessage.content)
+        .setTimestamp()
+        .setFooter({ text: "Deleted message" });
+      return { embeds: [embed] };
+    }
     return responses[Math.floor(Math.random() * responses.length)];
   }
 
-  snipeEditedMessage() {
+  snipeEditedMessage(Discord) {
     const responses = [
       "No edited message to snipe sadly.",
       "There are no edited messages to snipe!",
@@ -32,7 +43,18 @@ class MessageSniper {
       "Most unfortunate, there's no message to esnipe!",
       "Seems like there's no edited message to snipe.",
     ];
-    if (this.originalMessage) return this.originalMessage;
+    if (this.originalMessage) {
+      const user = this.originalMessage.author;
+      const embed = new Discord.MessageEmbed()
+        .setAuthor({
+          name: String(user.tag),
+          iconURL: user.avatarURL(),
+        })
+        .setDescription(this.originalMessage.content)
+        .setTimestamp()
+        .setFooter({ text: "Unedited message" });
+      return { embeds: [embed] };
+    }
     return responses[Math.floor(Math.random() * responses.length)];
   }
 }
