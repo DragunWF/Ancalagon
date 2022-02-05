@@ -1,4 +1,6 @@
-# Ancalagon
+# Ancalagon Bot
+
+Prefix is **"$"**. (Will be changable through commands in the future)
 
 ### Description
 - Hello! This is a discord bot for my personal discord server. It's more like the 2nd version
