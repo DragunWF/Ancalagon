@@ -12,9 +12,13 @@ const logger = new MessageLogger();
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity("The Universe", {
+    type: "WATCHING",
+    url: "https://github.com/DragunWF/Ancalagon",
+  });
 });
 
-client.on("message", (message) => {
+client.on("messageCreate", (message) => {
   if (message.author.bot) return;
   logger.logMessage(message.content, message.author.tag);
 
