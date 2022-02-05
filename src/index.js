@@ -11,14 +11,14 @@ client.on("message", (message) => {
   if (message.author.bot) return;
   console.log(`[${message.author.tag}]: ${message.content}`);
 
-  if (message.content.startswith(prefix))
+  if (message.content.startsWith(prefix)) {
     const [commandName, ...args] = message.content
-    .trim()
-    .substring(message.content.length)
-    .split(/\s+/)
+      .trim()
+      .substring(prefix.length)
+      .split(/\s+/);
 
-    if (commandName === "help") 
-      message.channel.send("**In construction**")
+    if (commandName === "help") message.channel.send("**In construction**");
+  }
 });
 
 client.login(process.env.TOKEN);
