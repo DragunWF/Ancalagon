@@ -14,7 +14,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity("The Universe", {
     type: "WATCHING",
-    url: "https://github.com/DragunWF/Ancalagon",
+    url: "https://dragonwf.netlify.app/",
   });
 });
 
