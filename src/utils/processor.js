@@ -1,22 +1,22 @@
 const HelpCommand = require("../commands/help");
 const InfoCommand = require("../commands/info");
-const MessageSniper = require("../commands/snipe");
 const PingCommand = require("../commands/ping");
+const MessageSniper = require("../commands/snipe");
 
 const help = new HelpCommand();
 const info = new InfoCommand();
-const sniper = new MessageSniper();
 const ping = new PingCommand();
+const sniper = new MessageSniper();
 
 class CommandProcessor {
   constructor(Discord) {
     this.Discord = Discord;
     this.commands = [
+      ["ping", ping.getBotLatency, false, ping],
       ["help", help.processHelpCommand, true, help],
       ["snipe", sniper.snipeDeletedMessage, false, sniper],
       ["esnipe", sniper.snipeEditedMessage, false, sniper],
       ["info", info.getBotInformation, false, info],
-      ["ping", ping.getBotLatency, false, ping],
     ];
   }
 
@@ -30,8 +30,10 @@ class CommandProcessor {
       .trim()
       .substring(prefix.length)
       .split(/\s+/);
+
     for (let cmd of this.commands) {
       if (commandName === cmd[0]) {
+        if (cmd[0] === "ping") return cmd[1](cmd[3], command);
         if (cmd[2]) return cmd[1](cmd[3], args);
         return cmd[1](cmd[3]);
       }
