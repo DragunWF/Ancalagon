@@ -1,5 +1,8 @@
+const { MessageEmbed } = require("discord.js");
+
 class Command {
   constructor() {
+    this.messageEmbed = MessageEmbed;
     this.embedColors = [
       "#0F52BA", // Blue
       "#9b111e", // Red
@@ -7,7 +10,7 @@ class Command {
       "#faed27", // Yellow
       "#E38C2D", // Orange
       "#A1045A", // Magneta
-      "#9966cc", // Amethyst
+      "#9966cc", // Amethyst (Purple)
       "#FFC0CB", // Pink
       "#D5F6FB", // Aqua
       "#9BD087", // Pastel Green
