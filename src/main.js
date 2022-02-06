@@ -23,7 +23,8 @@ client.on("messageCreate", (message) => {
   logger.logMessage(message.content, message.author.tag);
 
   if (message.content.startsWith(prefix)) {
-    message.channel.send(processor.processCommand(message, prefix));
+    const output = processor.processCommand(message, prefix);
+    if (output) message.channel.send(output);
   }
 });
 
