@@ -1,5 +1,8 @@
-class MessageSniper {
+const Command = require("../utils/command");
+
+class MessageSniper extends Command {
   constructor() {
+    super();
     this.originalMessage = undefined;
     this.deletedMessage = undefined;
   }
@@ -23,6 +26,7 @@ class MessageSniper {
     if (this.deletedMessage) {
       const user = this.deletedMessage.author;
       const embed = new Discord.MessageEmbed()
+        .setColor(getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
@@ -46,6 +50,7 @@ class MessageSniper {
     if (this.originalMessage) {
       const user = this.originalMessage.author;
       const embed = new Discord.MessageEmbed()
+        .setColor(getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
