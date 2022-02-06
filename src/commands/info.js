@@ -19,9 +19,9 @@ class InfoCommand extends Command {
     super();
   }
 
-  getBotInformation(reference) {
-    const embedOutput = new reference.messageEmbed()
-      .setColor(reference.getRandomEmbedColor())
+  getBotInformation(self) {
+    const embedOutput = new self.messageEmbed()
+      .setColor(self.getRandomEmbedColor())
       .setAuthor({
         name: "DragonWF#9321",
         iconURL:

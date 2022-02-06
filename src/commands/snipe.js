@@ -15,7 +15,7 @@ class MessageSniper extends Command {
     this.originalMessage = message;
   }
 
-  snipeDeletedMessage(reference) {
+  snipeDeletedMessage(self) {
     const responses = [
       "There are no messages to snipe!",
       "Unfortunately, there's no message to snipe.",
@@ -23,15 +23,15 @@ class MessageSniper extends Command {
       "Well that's quite disappointing, there's no message to snipe.",
       "Sadly, there's no message to snipe...",
     ];
-    if (reference.deletedMessage) {
-      const user = reference.deletedMessage.author;
-      const embed = new reference.messageEmbed()
-        .setColor(reference.getRandomEmbedColor())
+    if (self.deletedMessage) {
+      const user = self.deletedMessage.author;
+      const embed = new self.messageEmbed()
+        .setColor(self.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
         })
-        .setDescription(reference.deletedMessage.content)
+        .setDescription(self.deletedMessage.content)
         .setTimestamp()
         .setFooter({ text: "Deleted message" });
       return { embeds: [embed] };
@@ -39,7 +39,7 @@ class MessageSniper extends Command {
     return responses[Math.floor(Math.random() * responses.length)];
   }
 
-  snipeEditedMessage(reference) {
+  snipeEditedMessage(self) {
     const responses = [
       "No edited message to snipe sadly.",
       "There are no edited messages to snipe!",
@@ -47,15 +47,15 @@ class MessageSniper extends Command {
       "Most unfortunate, there's no message to esnipe!",
       "Seems like there's no edited message to snipe.",
     ];
-    if (reference.originalMessage) {
-      const user = reference.originalMessage.author;
-      const embed = new reference.messageEmbed()
-        .setColor(reference.getRandomEmbedColor())
+    if (self.originalMessage) {
+      const user = self.originalMessage.author;
+      const embed = new self.messageEmbed()
+        .setColor(self.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
         })
-        .setDescription(reference.originalMessage.content)
+        .setDescription(self.originalMessage.content)
         .setTimestamp()
         .setFooter({ text: "Unedited message" });
       return { embeds: [embed] };

@@ -44,20 +44,20 @@ class HelpCommand extends Command {
     return "**In Construction**";
   }
 
-  processHelpCommand(reference, args) {
+  processHelpCommand(self, args) {
     switch (args[0]) {
       case "general":
-        return reference.getGeneralCommandList();
+        return self.getGeneralCommandList();
       case "economy":
-        return reference.getEconomyCommandList();
+        return self.getEconomyCommandList();
       case "game":
       case "games":
-        return reference.getGameCommandList();
+        return self.getGameCommandList();
       case "meme":
       case "memes":
-        return reference.getMemeCommandList();
+        return self.getMemeCommandList();
     }
-    return reference.getHelpCommandList();
+    return self.getHelpCommandList();
   }
 }
 
