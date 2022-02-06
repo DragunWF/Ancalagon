@@ -48,12 +48,14 @@ class HelpCommand extends Command {
     switch (args[0]) {
       case "general":
         return reference.getGeneralCommandList();
-      case "games":
-        return reference.getGameCommandList();
-      case "memes" || "meme":
-        return reference.getMemeCommandList();
       case "economy":
         return reference.getEconomyCommandList();
+      case "game":
+      case "games":
+        return reference.getGameCommandList();
+      case "meme":
+      case "memes":
+        return reference.getMemeCommandList();
     }
     return reference.getHelpCommandList();
   }
