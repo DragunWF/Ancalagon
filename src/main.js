@@ -12,7 +12,7 @@ const logger = new MessageLogger();
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("The Universe", {
+  client.user.setActivity("The Galaxy [$help]", {
     type: "WATCHING",
     url: "https://dragonwf.netlify.app/",
   });
