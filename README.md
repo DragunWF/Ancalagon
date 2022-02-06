@@ -13,5 +13,7 @@ Prefix is **"$"**. (Will be changable through commands in the future)
 
 ### Commands:
 - $help
+- $snipe
+- $esnipe
 
 **This bot is still in construction by the way**
