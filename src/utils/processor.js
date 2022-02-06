@@ -8,9 +8,9 @@ class CommandProcessor {
   constructor(Discord) {
     this.Discord = Discord;
     this.commands = [
-      ["help", help.getCommandList, true],
-      ["snipe", sniper.snipeDeletedMessage, false],
-      ["esnipe", sniper.snipeEditedMessage, false],
+      ["help", help.processHelpCommand, true, help],
+      ["snipe", sniper.snipeDeletedMessage, false, sniper],
+      ["esnipe", sniper.snipeEditedMessage, false, sniper],
     ];
     this.snipeCommands = [this.commands[1][0], this.commands[2][0]];
   }
@@ -28,7 +28,7 @@ class CommandProcessor {
     for (let cmd of this.commands) {
       if (commandName === cmd[0]) {
         if (this.snipeCommands.includes(cmd[0])) return cmd[1](sniper);
-        if (cmd[2]) return cmd[1](args);
+        if (cmd[2]) return cmd[1](help, args);
         return cmd[1]();
       }
     }
@@ -39,4 +39,4 @@ class CommandProcessor {
 module.exports = CommandProcessor;
 
 // Commands list slot purposes
-// [commandName, commandFunction, doesCommandHaveParameters]
+// [commandName, commandFunction, doesCommandHaveParameters, reference]
