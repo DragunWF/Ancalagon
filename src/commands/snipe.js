@@ -48,14 +48,14 @@ class MessageSniper extends Command {
       "Seems like there's no edited message to snipe.",
     ];
     if (reference.originalMessage) {
-      const user = reference.author;
+      const user = reference.originalMessage.author;
       const embed = new reference.messageEmbed()
         .setColor(reference.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
         })
-        .setDescription(reference.content)
+        .setDescription(reference.originalMessage.content)
         .setTimestamp()
         .setFooter({ text: "Unedited message" });
       return { embeds: [embed] };
