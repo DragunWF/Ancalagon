@@ -27,7 +27,7 @@ class CommandProcessor {
       .split(/\s+/);
     for (let cmd of this.commands) {
       if (commandName === cmd[0]) {
-        if (this.snipeCommands.includes(cmd[0])) cmd[1](sniper);
+        if (this.snipeCommands.includes(cmd[0])) return cmd[1](sniper);
         if (cmd[2]) return cmd[1](args);
         return cmd[1]();
       }
@@ -39,4 +39,4 @@ class CommandProcessor {
 module.exports = CommandProcessor;
 
 // Commands list slot purposes
-// [commandName, commandFunction, doesCommandHaveArgs]
+// [commandName, commandFunction, doesCommandHaveParameters]
