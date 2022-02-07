@@ -7,9 +7,6 @@ const prefix = "$";
 const CommandProcessor = require("./utils/processor");
 const MessageLogger = require("./utils/message_logger");
 
-const processor = new CommandProcessor(Discord);
-const logger = new MessageLogger();
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity("The Galaxy [$help]", {
@@ -20,28 +17,28 @@ client.on("ready", () => {
 
 client.on("messageCreate", (message) => {
   if (message.author.bot) return;
-  logger.logMessage(message.content, message.author.tag);
+  MessageLogger.logMessage(message.content, message.author.tag);
 
   if (message.content.startsWith(prefix)) {
-    const output = processor.processCommand(message, prefix);
+    const output = CommandProcessor.processCommand(message, prefix);
     if (output) message.channel.send(output);
   }
 });
 
 client.on("messageDelete", (message) => {
   if (message.author.bot) return;
-  logger.logDeletedMessage(message.content, message.author.tag);
-  processor.configureSniper(message, "deletedMessage");
+  MessageLogger.logDeletedMessage(message.content, message.author.tag);
+  CommandProcessor.configureSniper(message, "deletedMessage");
 });
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
   if (oldMessage.author.bot) return;
-  logger.logEditedMessage(
+  MessageLogger.logEditedMessage(
     oldMessage.content,
     newMessage.content,
     oldMessage.author.tag
   );
-  processor.configureSniper(oldMessage, "editedMessage");
+  CommandProcessor.configureSniper(oldMessage, "editedMessage");
 });
 
 client.login(process.env.TOKEN);

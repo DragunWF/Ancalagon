@@ -7,31 +7,27 @@ const help = new HelpCommand();
 const info = new InfoCommand();
 const ping = new PingCommand();
 const sniper = new MessageSniper();
+const commands = [
+  ["ping", ping.getBotLatency, false, ping],
+  ["help", help.processHelpCommand, true, help],
+  ["snipe", sniper.snipeDeletedMessage, false, sniper],
+  ["esnipe", sniper.snipeEditedMessage, false, sniper],
+  ["info", info.getBotInformation, false, info],
+];
 
 class CommandProcessor {
-  constructor(Discord) {
-    this.Discord = Discord;
-    this.commands = [
-      ["ping", ping.getBotLatency, false, ping],
-      ["help", help.processHelpCommand, true, help],
-      ["snipe", sniper.snipeDeletedMessage, false, sniper],
-      ["esnipe", sniper.snipeEditedMessage, false, sniper],
-      ["info", info.getBotInformation, false, info],
-    ];
-  }
-
-  configureSniper(message, type) {
+  static configureSniper(message, type) {
     if (type === "deletedMessage") sniper.storeDeletedMessage(message);
     else sniper.storeOriginalMessage(message);
   }
 
-  processCommand(command, prefix) {
+  static processCommand(command, prefix) {
     const [commandName, ...args] = command.content
       .trim()
       .substring(prefix.length)
       .split(/\s+/);
 
-    for (let cmd of this.commands) {
+    for (let cmd of commands) {
       if (commandName === cmd[0]) {
         if (cmd[0] === "ping") return cmd[1](cmd[3], command);
         if (cmd[2]) return cmd[1](cmd[3], args);
