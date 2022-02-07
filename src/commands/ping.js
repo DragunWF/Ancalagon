@@ -5,10 +5,10 @@ class PingCommand extends Command {
     super();
   }
 
-  getBotLatency(self, message) {
+  getBotLatency(object, message) {
     const ping = Math.abs(Date.now() - message.createdTimestamp);
-    const embedOutput = new self.messageEmbed()
-      .setColor(self.getRandomEmbedColor())
+    const embedOutput = new object.messageEmbed()
+      .setColor(object.getRandomEmbedColor())
       .setAuthor({
         name: "Pong!",
       })

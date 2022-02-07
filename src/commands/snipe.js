@@ -39,7 +39,7 @@ class MessageSniper extends Command {
     return responses[Math.floor(Math.random() * responses.length)];
   }
 
-  snipeEditedMessage(self) {
+  snipeEditedMessage(object) {
     const responses = [
       "No edited message to snipe sadly.",
       "There are no edited messages to snipe!",
@@ -47,15 +47,15 @@ class MessageSniper extends Command {
       "Most unfortunate, there's no message to esnipe!",
       "Seems like there's no edited message to snipe.",
     ];
-    if (self.originalMessage) {
-      const user = self.originalMessage.author;
-      const embed = new self.messageEmbed()
-        .setColor(self.getRandomEmbedColor())
+    if (object.originalMessage) {
+      const user = object.originalMessage.author;
+      const embed = new object.messageEmbed()
+        .setColor(object.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
         })
-        .setDescription(self.originalMessage.content)
+        .setDescription(object.originalMessage.content)
         .setTimestamp()
         .setFooter({ text: "Unedited message" });
       return { embeds: [embed] };
