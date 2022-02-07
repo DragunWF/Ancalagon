@@ -17,7 +17,7 @@ client.on("ready", () => {
 
 client.on("messageCreate", (message) => {
   if (message.author.bot) return;
-  MessageLogger.logMessage(message.content, message.author.tag);
+  MessageLogger.logCreatedMessage(message.content, message.author.tag);
 
   if (message.content.startsWith(prefix)) {
     const output = CommandProcessor.processCommand(message, prefix);

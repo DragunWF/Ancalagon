@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 class MessageLogger {
-  static logMessage(content, author) {
+  static logCreatedMessage(content, author) {
     const log = `[${author}]: ${content}`;
     console.log(log);
     fs.appendFile("./data/logs/chat_logs.txt", `${log}\n`, (err) => {
