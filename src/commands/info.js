@@ -3,13 +3,9 @@ const Command = require("../utils/command");
 const description = `
 Hello! This is a bot written in JavaScript by \`DragonWF#9321\`.
 
-At the moment, **this bot is in development** and is still being worked
-on to be added more features.
+At the moment, **this bot is in development** and is still being worked on to be added more features.
 
-I plan on adding an economy feature that integrates itself with my
-previous bot's economy feature (DragonBot). So for people who are
-worrying that their gold might reset to 0, well worry no more since
-I'll just be transfering your gold to this bot's economy.
+I plan on adding an economy feature that integrates itself with my previous bot's economy feature (DragonBot). So for people who are worrying that their gold might reset to zero, well worry no more since I'll just be transfering your gold to this bot's economy.
 
 As for now this will have to do.
 `;
