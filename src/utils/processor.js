@@ -2,14 +2,18 @@ const HelpCommand = require("../commands/help");
 const InfoCommand = require("../commands/info");
 const PingCommand = require("../commands/ping");
 const MessageSniper = require("../commands/snipe");
+const InspireCommand = require("../commands/inspire");
 
 const help = new HelpCommand();
 const info = new InfoCommand();
 const ping = new PingCommand();
 const sniper = new MessageSniper();
+const inspire = new InspireCommand();
+
 const commands = [
   ["ping", ping.getBotLatency, false, ping],
   ["help", help.processHelpCommand, true, help],
+  ["inspire", inspire.sendQuoteData, false, inspire],
   ["snipe", sniper.snipeDeletedMessage, false, sniper],
   ["esnipe", sniper.snipeEditedMessage, false, sniper],
   ["info", info.getBotInformation, false, info],
