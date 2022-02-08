@@ -5,9 +5,62 @@
       "I see that you have a mention of a dragon there...",
       "HmMmmmMm, I see that",
       "That's gotta be a V right there",
-      "Lel"
+      "Lel",
+      "Well that's quite intriguing",
+      "Sometimes I wonder...",
+      "HmMmMMMmm",
+      "I see that",
+      "Oi I can see that"
     ],
     "timesToExecute": 5,
+    "timesMentioned": 0
+  },
+  {
+    "keyword": ["jackbox", "boxjack"],
+    "responses": [
+      "Oh hey, a mention of jackbox",
+      "Eyyyyy Jackbox",
+      "Jackbox jackbox jackbox",
+      "Yeeeeeeeeeee",
+      "Did somebody say jackbox?",
+      "Ahh jackbox, will we venture into it again like we're in another world?",
+      ":regional_indicator_j: :regional_indicator_a :regional_indicator_c :regional_indicator_k :regional_indicator_b :regional_indicator_o :regional_indicator_x",
+      "HMMmmMMmMm, jackbox...",
+      ":ringed_planet:",
+      ":ballot_box:",
+      ":mailbox_with_no_mail:"
+    ],
+    "timesToExecute": 3,
+    "timesMentioned": 0
+  },
+  {
+    "keyword": "ancalagon",
+    "responses": [
+      "I see that my name has been mentioned",
+      "Well that's quite intriguing",
+      "A human mentioned my name, how interesting",
+      "Sometimes I wonder what people are talking about me, a bot",
+      "When will I be updated again? I wonder",
+      "Sometimes, I dream about cheese...",
+      "Have you heard of the high elves?",
+      "Now that makes me intrigued",
+      "I'm quite fascinated that my name has been mentioned",
+      "Oh hey, a mention of my name",
+      "I just wanna go to space",
+      "Let me travel between dimensions, then I'll be quite content",
+      "Hmm, a mention of my name I see",
+      "I do wonder about what people say about my features",
+      "I see",
+      "It's quite interesting that someone mentioned my name",
+      "HMMmmmMMm, I wonder"
+    ],
+    "timesToExecute": 1,
+    "timesMentioned": 0
+  },
+  {
+    "keyword": "waw",
+    "responses": ["waw"],
+    "timesToExecute": 2,
     "timesMentioned": 0
   }
 ]
