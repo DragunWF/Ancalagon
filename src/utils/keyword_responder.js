@@ -1,26 +1,23 @@
-const dragonResponses = [
-  "I see that you have a mention of a dragon there...",
-  "HmMmmmMm, I see that",
-  "That's gotta be a V right there",
-  "Lel",
-];
-const jackboxResponses = [];
-const ancalagonResponses = [];
+const fs = require("fs");
+
+const keywords = JSON.parse(fs.readFileSync("./data/bot/keywords.json"));
 
 class KeyWordResponder {
-  keywords = [
-    ["dragon", dragonResponses, 5, 0],
-    ["jackbox", jackboxResponses, 2, 0],
-    ["ancalagon", ancalagonResponses, 1, 0],
-    ["waw", "Waw"],
-  ];
+  static incrementTimesMentioned(data) {
+    keywords[keywords.indexOf(data)]["timesMentioned"]++;
+  }
+
+  static pickRandomResponse(data) {
+    return data["responses"][Math.floor(Math.random() * keywords.length)];
+  }
+
   static checkMessage(message) {
     for (let data of keywords) {
-      if (message.toLowerCase().includes(data[0])) {
-        if (!Array.isArray(data[1])) return data[1];
-        if (data[2] % data[3] === 0) {
-          return data[1][Math.floor(Math.random() * data[1].length)];
-        } else this.keywords[this.keywords.indexOf[data]][3]++;
+      if (data["keywords"].includes(message)) {
+        if (data["timesMentioned"] % data["timesToExecute"] === 0) {
+          this.incrementTimesMentioned(data);
+          return this.pickRandomResponse(data);
+        } else this.incrementTimesMentioned(data);
       }
     }
     return false;
