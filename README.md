@@ -12,8 +12,6 @@
 - [Discord Server](https://discord.gg/9JdnnPN)
 - [DragonBot](https://github.com/DragunWF/DragonBot)
 
----
-
 # Commands
 
 ### Help Commands
@@ -30,5 +28,17 @@
 - `$ping`
 - `$snipe`
 - `$esnipe`
+
+### Game Commands
+
+- **In Development**
+
+### Meme Commands
+
+- **In Development**
+
+### Economy Commands
+
+- **In Development**
 
 **This bot is still in development by the way...**
