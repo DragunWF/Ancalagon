@@ -6,16 +6,16 @@
     "object": "ping"
   },
   {
-    "alias": "inspire",
-    "execution": "inspire.getBotLatency",
-    "hasArgs": false,
-    "object": "inspire"
-  },
-  {
     "alias": "help",
     "execution": "help.processHelpCommand",
     "hasArgs": true,
     "object": "help"
+  },
+  {
+    "alias": "inspire",
+    "execution": "inspire.getBotLatency",
+    "hasArgs": false,
+    "object": "inspire"
   },
   {
     "alias": "snipe",
