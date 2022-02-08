@@ -1,28 +1,38 @@
+const fs = require("fs");
+
 const HelpCommand = require("../commands/help");
 const InfoCommand = require("../commands/info");
 const PingCommand = require("../commands/ping");
-const MessageSniper = require("../commands/snipe");
+const SnipeCommand = require("../commands/snipe");
 const InspireCommand = require("../commands/inspire");
 
 const help = new HelpCommand();
 const info = new InfoCommand();
 const ping = new PingCommand();
-const sniper = new MessageSniper();
+const sniper = new SnipeCommand();
 const inspire = new InspireCommand();
 
-const commands = [
-  ["ping", ping.getBotLatency, false, ping],
-  ["help", help.processHelpCommand, true, help],
-  ["inspire", inspire.sendQuoteData, false, inspire],
-  ["snipe", sniper.snipeDeletedMessage, false, sniper],
-  ["esnipe", sniper.snipeEditedMessage, false, sniper],
-  ["info", info.getBotInformation, false, info],
+const commands = JSON.parse(fs.readFileSync("./data/bot/commands.json"));
+const executions = [
+  [ping.getBotLatency, ping],
+  [help.processHelpCommand, help],
+  [inspire.sendQuoteData, inspire],
+  [sniper.snipeDeletedMessage, sniper],
+  [sniper.snipeEditedMessage, sniper],
+  [info.getBotInformation, sniper],
 ];
 
 class CommandProcessor {
   static configureSniper(message, type) {
     if (type === "deletedMessage") sniper.storeDeletedMessage(message);
     else sniper.storeOriginalMessage(message);
+  }
+
+  static mapCommandExecutions() {
+    for (let i = 0; i < commands.length; i++) {
+      commands[i]["execution"] = executions[i][0];
+      commands[i]["object"] = executions[i][1];
+    }
   }
 
   static processCommand(command, prefix) {
@@ -32,10 +42,11 @@ class CommandProcessor {
       .split(/\s+/);
 
     for (let cmd of commands) {
-      if (commandName === cmd[0]) {
-        if (cmd[0] === "ping") return cmd[1](cmd[3], command);
-        if (cmd[2]) return cmd[1](cmd[3], args);
-        return cmd[1](cmd[3]);
+      if (cmd["alias"].includes(commandName.toLowerCase())) {
+        if (commandName === "ping" || commandName === "latency")
+          return cmd["execution"](cmd["object"], command);
+        if (cmd["hasArgs"]) return cmd["execution"](cmd["object"], args);
+        return cmd["execution"](cmd["object"]);
       }
     }
     return false;
@@ -43,6 +54,3 @@ class CommandProcessor {
 }
 
 module.exports = CommandProcessor;
-
-// Commands list slot purposes
-// [commandName, commandFunction, doesCommandHaveParameters, reference]
