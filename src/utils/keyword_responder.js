@@ -24,7 +24,6 @@ class KeyWordResponder {
     for (let data of keywords) {
       if (this.containsKeyword(message, data)) {
         if (data["timesMentioned"] % data["timesToExecute"] === 0) {
-          console.log("response executed");
           this.incrementTimesMentioned(data);
           return this.pickRandomResponse(data);
         } else this.incrementTimesMentioned(data);

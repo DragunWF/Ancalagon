@@ -4,16 +4,16 @@ class MessageLogger {
   static logCreatedMessage(content, author) {
     const log = `[${author}]: ${content}`;
     console.log(log);
-    fs.appendFile("./data/logs/chat_logs.txt", `${log}\n`, (err) => {
-      if (err) console.log(error);
+    fs.appendFile("./data/logs/chat_logs.txt", `${log}\n`, (error) => {
+      if (error) console.log(error);
     });
   }
 
   static logDeletedMessage(content, author) {
     const log = `Deleted Message:\n[${author}]: ${content}`;
     console.log(log);
-    fs.appendFile("./data/logs/deleted_logs.txt", `${log}\n`, (err) => {
-      if (err) console.log(err);
+    fs.appendFile("./data/logs/deleted_logs.txt", `${log}\n`, (error) => {
+      if (error) console.log(error);
     });
   }
 
@@ -22,8 +22,8 @@ class MessageLogger {
 Before: ${before}
 After: ${after}`;
     console.log(log);
-    fs.appendFile("./data/logs/edited_logs.txt", `${log}\n`, (err) => {
-      if (err) console.log(err);
+    fs.appendFile("./data/logs/edited_logs.txt", `${log}\n`, (error) => {
+      if (error) console.log(error);
     });
   }
 }
