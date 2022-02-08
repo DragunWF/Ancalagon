@@ -12,7 +12,7 @@ class InspireCommand extends Command {
     return data;
   }
 
-  async sendQuoteData(object) {
+  sendQuoteData(object) {
     return "**In Development**";
     // const data = await object.fetchQuoteData();
     // const embedOutput = new object.MessageEmbed()
