@@ -14,6 +14,7 @@ client.on("ready", () => {
     type: "WATCHING",
     url: "https://dragonwf.netlify.app/",
   });
+  CommandProcessor.mapCommandExecutions();
 });
 
 client.on("messageCreate", (message) => {
