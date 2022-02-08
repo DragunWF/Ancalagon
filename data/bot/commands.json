@@ -3,36 +3,42 @@
     "alias": ["ping", "latency"],
     "execution": "",
     "hasArgs": false,
+    "hasMsgParameter": true,
     "object": null
   },
   {
     "alias": "help",
     "execution": "",
     "hasArgs": true,
+    "hasMsgParameter": false,
     "object": null
   },
   {
     "alias": "inspire",
     "execution": "",
     "hasArgs": false,
+    "hasMsgParameter": false,
     "object": null
   },
   {
     "alias": "snipe",
     "execution": "",
     "hasArgs": false,
+    "hasMsgParameter": false,
     "object": null
   },
   {
     "alias": ["esnipe", "editsnipe"],
     "execution": "",
     "hasArgs": false,
+    "hasMsgParameter": false,
     "object": null
   },
   {
     "alias": ["info", "information"],
     "execution": "",
     "hasArgs": false,
+    "hasMsgParameter": false,
     "object": null
   }
 ]
