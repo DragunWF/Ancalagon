@@ -16,7 +16,7 @@ class InfoCommand extends Command {
   }
 
   getBotInformation(object) {
-    const embedOutput = new object.messageEmbed()
+    const embedOutput = new object.MessageEmbed()
       .setColor(object.getRandomEmbedColor())
       .setAuthor({
         name: "DragonWF#9321",

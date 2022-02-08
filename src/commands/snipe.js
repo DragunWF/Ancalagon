@@ -15,7 +15,7 @@ class MessageSniper extends Command {
     this.originalMessage = message;
   }
 
-  snipeDeletedMessage(self) {
+  snipeDeletedMessage(object) {
     const responses = [
       "There are no messages to snipe!",
       "Unfortunately, there's no message to snipe.",
@@ -23,15 +23,15 @@ class MessageSniper extends Command {
       "Well that's quite disappointing, there's no message to snipe.",
       "Sadly, there's no message to snipe...",
     ];
-    if (self.deletedMessage) {
-      const user = self.deletedMessage.author;
-      const embed = new self.messageEmbed()
-        .setColor(self.getRandomEmbedColor())
+    if (object.deletedMessage) {
+      const user = object.deletedMessage.author;
+      const embed = new object.MessageEmbed()
+        .setColor(object.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
           iconURL: user.avatarURL(),
         })
-        .setDescription(self.deletedMessage.content)
+        .setDescription(object.deletedMessage.content)
         .setTimestamp()
         .setFooter({ text: "Deleted message" });
       return { embeds: [embed] };
@@ -49,7 +49,7 @@ class MessageSniper extends Command {
     ];
     if (object.originalMessage) {
       const user = object.originalMessage.author;
-      const embed = new object.messageEmbed()
+      const embed = new object.MessageEmbed()
         .setColor(object.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),

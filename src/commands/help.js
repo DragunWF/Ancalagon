@@ -16,7 +16,7 @@ class HelpCommand extends Command {
 
   getHelpCommandList() {
     const commands = ["general", "games", "memes", "economy"];
-    const embedOutput = new this.messageEmbed()
+    const embedOutput = new this.MessageEmbed()
       .setColor(this.getRandomEmbedColor())
       .setTitle("Command Categories :ringed_planet:")
       .setDescription(this.concatenateCommands(commands, true, "help"));
@@ -25,7 +25,7 @@ class HelpCommand extends Command {
 
   getGeneralCommandList() {
     const commands = ["info", "snipe", "esnipe"];
-    const embedOutput = new this.messageEmbed()
+    const embedOutput = new this.MessageEmbed()
       .setColor(this.getRandomEmbedColor())
       .setTitle("General Command List :tools:")
       .setDescription(this.concatenateCommands(commands, false));
@@ -44,20 +44,20 @@ class HelpCommand extends Command {
     return "**In Construction**";
   }
 
-  processHelpCommand(self, args) {
+  processHelpCommand(object, args) {
     switch (args[0]) {
       case "general":
-        return self.getGeneralCommandList();
+        return object.getGeneralCommandList();
       case "economy":
-        return self.getEconomyCommandList();
+        return object.getEconomyCommandList();
       case "game":
       case "games":
-        return self.getGameCommandList();
+        return object.getGameCommandList();
       case "meme":
       case "memes":
-        return self.getMemeCommandList();
+        return object.getMemeCommandList();
     }
-    return self.getHelpCommandList();
+    return object.getHelpCommandList();
   }
 }
 
