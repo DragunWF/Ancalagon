@@ -6,6 +6,7 @@ const prefix = "$";
 
 const CommandProcessor = require("./utils/processor");
 const MessageLogger = require("./utils/message_logger");
+const KeyWordResponder = require("./utils/keyword_responder");
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -23,6 +24,9 @@ client.on("messageCreate", (message) => {
     const output = CommandProcessor.processCommand(message, prefix);
     if (output) message.channel.send(output);
   }
+
+  // const response = KeyWordResponder.checkMessage(message.content);
+  // if (response) message.reply(response);
 });
 
 client.on("messageDelete", (message) => {
