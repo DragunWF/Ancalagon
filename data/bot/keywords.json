@@ -10,7 +10,9 @@
       "Sometimes I wonder...",
       "HmMmMMMmm",
       "I see that",
-      "Oi I can see that"
+      "Oi I can see that",
+      "A mention of dragon, how intriguing",
+      "HmmMMmMm, dragon... now that makes me wonder even though I'm a bot programmed to say this"
     ],
     "timesToExecute": 5,
     "timesMentioned": 0
@@ -59,8 +61,48 @@
   },
   {
     "keyword": "waw",
-    "responses": ["waw"],
-    "timesToExecute": 2,
+    "responses": ["waw", "wAw", "WaW"],
+    "timesToExecute": 3,
+    "timesMentioned": 0
+  },
+  {
+    "keyword": ["cpt", "cbt"],
+    "responses": [
+      "I see that you have a mention of CPT there...",
+      "HmMMmm, CPT",
+      "Waw, a mention of CPT",
+      "HmMmM, I wonder what CPT will change his username into next",
+      "Oh CPT, CPT, what game will you play next in these upcoming days",
+      "Zhong Xina",
+      ":regional_indicator_c: :regional_indicator_p: :regional_indicator_t",
+      ":regional_indicator_c: :regional_indicator_b: :regional_indicator_t",
+      "CBT",
+      "I wonder how CPT deals with the skinwalkers",
+      "What weapon does CPT use to beat up the skinwalkers? HmMmmm, I wonder",
+      "China's esteemed representer",
+      "I wonder how CPT's adventure into the many different worlds of video games is like",
+      "I see that CPT has been mentioned",
+      "CPT, our source for Jackbox games. How delightful"
+    ],
+    "timesToExecute": 3,
+    "timesMentioned": 0
+  },
+  {
+    "keyword": ["warcook", "warcock", "skywarowl", "seriouslyez", "luq"],
+    "responses": [
+      "I see a mention of a great hive legend",
+      "I see a mention of a famous SkyWars player",
+      "Warcook aka SkywarOwl and SeriouslyEZ, very intriguing",
+      "Warcook, I wonder how his music sessions to `Everywhere at the end of the world` went",
+      "A great great hive player has been mentioned",
+      "The great warcook has been mentioned, I see",
+      "I wonder when Warcook will cook his next noodles, HmMmmMmmm",
+      "A mention of Warcook, well that's quite intriguing",
+      "Very nice",
+      "The night owl",
+      "Very very nice"
+    ],
+    "timesToExecute": 3,
     "timesMentioned": 0
   }
 ]
