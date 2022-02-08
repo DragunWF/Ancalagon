@@ -1,0 +1,38 @@
+[
+  {
+    "alias": "ping",
+    "execution": "ping.getBotLatency",
+    "hasArgs": false,
+    "object": "ping"
+  },
+  {
+    "alias": "inspire",
+    "execution": "inspire.getBotLatency",
+    "hasArgs": false,
+    "object": "inspire"
+  },
+  {
+    "alias": "help",
+    "execution": "help.processHelpCommand",
+    "hasArgs": true,
+    "object": "help"
+  },
+  {
+    "alias": "snipe",
+    "execution": "sniper.snipeDeletedMessage",
+    "hasArgs": false,
+    "object": "sniper"
+  },
+  {
+    "alias": "esnipe",
+    "execution": "ping.getBotLatency",
+    "hasArgs": false,
+    "object": "sniper"
+  },
+  {
+    "alias": "info",
+    "execution": "info.getBotInformation",
+    "hasArgs": false,
+    "object": "info"
+  }
+]
