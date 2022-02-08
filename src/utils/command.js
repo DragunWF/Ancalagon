@@ -19,7 +19,7 @@ class Command {
   }
 
   getRandomEmbedColor() {
-    return this.embedColors[
+    return embedMessageColors[
       Math.floor(Math.random() * embedMessageColors.length)
     ];
   }
