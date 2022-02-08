@@ -24,7 +24,7 @@ class HelpCommand extends Command {
   }
 
   getGeneralCommandList() {
-    const commands = ["info", "snipe", "esnipe"];
+    const commands = ["info", "ping", "inspire", "snipe", "esnipe"];
     const embedOutput = new this.MessageEmbed()
       .setColor(this.getRandomEmbedColor())
       .setTitle("General Command List :tools:")
