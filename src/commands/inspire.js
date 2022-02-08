@@ -6,17 +6,17 @@ class InspireCommand extends Command {
     super();
   }
 
-  fetchQuoteData() {
-    return fetch("https://zenquotes.io/api/random").then((result) => {
-      return result.json();
-    });
+  async fetchQuoteData() {
+    const response = await fetch("https://zenquotes.io/api/random");
+    const data = await response.json();
+    return data;
   }
 
-  sendQuoteData(object) {
-    const data = object.fetchQuoteData();
-    const embedOutput = new object.messageEmbed()
+  async sendQuoteData(object) {
+    const data = await object.fetchQuoteData();
+    const embedOutput = await new object.messageEmbed()
       .setColor(object.getRandomEmbedColor())
-      .setAuthor({ name: `From ${data[0]["a"]}`, url: "https://zenquotes.io/" })
+      .setAuthor({ name: `By ${data[0]["a"]}`, url: "https://zenquotes.io/" })
       .setDescription(`*"${data[0]["q"]}"*`)
       .setFooter({ text: "From `zenquotes.io`" });
     return { embeds: [embedOutput] };
