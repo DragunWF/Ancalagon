@@ -1,6 +1,6 @@
 const Command = require("../utils/command");
 
-class MessageSniper extends Command {
+class SnipeCommand extends Command {
   constructor() {
     super();
     this.originalMessage = null;
@@ -64,4 +64,4 @@ class MessageSniper extends Command {
   }
 }
 
-module.exports = MessageSniper;
+module.exports = SnipeCommand;
