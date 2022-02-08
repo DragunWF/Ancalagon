@@ -26,8 +26,8 @@ client.on("messageCreate", (message) => {
     if (output) message.channel.send(output);
   }
 
-  // const response = KeyWordResponder.checkMessage(message.content);
-  // if (response) message.reply(response);
+  const response = KeyWordResponder.checkMessage(message.content);
+  if (response) message.channel.send(response);
 });
 
 client.on("messageDelete", (message) => {

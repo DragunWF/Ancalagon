@@ -11,10 +11,20 @@ class KeyWordResponder {
     return data["responses"][Math.floor(Math.random() * keywords.length)];
   }
 
+  static containsKeyword(string, data) {
+    if (Array.isArray(data["keyword"])) {
+      for (let word of string.toLowerCase().split(" "))
+        for (let keyword of data["keyword"])
+          if (word === keyword) return true;
+    } else if (string === data["keyword"]) return true
+    return false;
+  }
+
   static checkMessage(message) {
     for (let data of keywords) {
-      if (data["keywords"].includes(message)) {
+      if (this.containsKeyword(message, data)) {
         if (data["timesMentioned"] % data["timesToExecute"] === 0) {
+          console.log("response executed");
           this.incrementTimesMentioned(data);
           return this.pickRandomResponse(data);
         } else this.incrementTimesMentioned(data);
