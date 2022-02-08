@@ -43,8 +43,10 @@ class CommandProcessor {
 
     for (let cmd of commands) {
       if (cmd["alias"].includes(commandName.toLowerCase())) {
-        if (commandName === "ping" || commandName === "latency")
+        if (cmd["hasMsgParameter"]) {
+          if (!cmd["hasArgs"]) return cmd["execution"](cmd["object"], command);
           return cmd["execution"](cmd["object"], command);
+        }
         if (cmd["hasArgs"]) return cmd["execution"](cmd["object"], args);
         return cmd["execution"](cmd["object"]);
       }
