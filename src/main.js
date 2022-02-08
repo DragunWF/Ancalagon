@@ -7,6 +7,7 @@ const prefix = "$";
 const CommandProcessor = require("./utils/processor");
 const MessageLogger = require("./utils/message_logger");
 const KeyWordResponder = require("./utils/keyword_responder");
+const keepServerRunning = require("./utils/server");
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -46,4 +47,5 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
   CommandProcessor.configureSniper(oldMessage, "editedMessage");
 });
 
+keepServerRunning();
 client.login(process.env.TOKEN);
