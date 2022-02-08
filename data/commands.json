@@ -3,36 +3,36 @@
     "alias": ["ping", "latency"],
     "execution": "",
     "hasArgs": false,
-    "object": "ping"
+    "object": null
   },
   {
     "alias": "help",
     "execution": "",
     "hasArgs": true,
-    "object": "help"
+    "object": null
   },
   {
     "alias": "inspire",
     "execution": "",
     "hasArgs": false,
-    "object": "inspire"
+    "object": null
   },
   {
     "alias": "snipe",
     "execution": "",
     "hasArgs": false,
-    "object": "sniper"
+    "object": null
   },
   {
     "alias": ["esnipe", "editsnipe"],
     "execution": "",
     "hasArgs": false,
-    "object": "sniper"
+    "object": null
   },
   {
     "alias": ["info", "information"],
     "execution": "",
     "hasArgs": false,
-    "object": "info"
+    "object": null
   }
 ]
