@@ -61,12 +61,12 @@
   },
   {
     "keyword": "waw",
-    "responses": ["waw", "wAw", "WaW"],
-    "timesToExecute": 3,
+    "responses": ["waw", "wAw", "WaW", "wAW", "WAw"],
+    "timesToExecute": 2,
     "timesMentioned": 0
   },
   {
-    "keyword": ["cpt", "cbt"],
+    "keyword": ["cpt", "cbt", "cptinvincible"],
     "responses": [
       "I see that you have a mention of CPT there...",
       "HmMMmm, CPT",
@@ -82,7 +82,8 @@
       "China's esteemed representer",
       "I wonder how CPT's adventure into the many different worlds of video games is like",
       "I see that CPT has been mentioned",
-      "CPT, our source for Jackbox games. How delightful"
+      "CPT, our source for Jackbox games. How delightful",
+      "CPT, when SOMA. HEHEHE"
     ],
     "timesToExecute": 3,
     "timesMentioned": 0
@@ -100,7 +101,8 @@
       "A mention of Warcook, well that's quite intriguing",
       "Very nice",
       "The night owl",
-      "Very very nice"
+      "Very very nice",
+      "It's only a burning memory now..."
     ],
     "timesToExecute": 3,
     "timesMentioned": 0
