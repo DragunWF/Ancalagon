@@ -20,7 +20,7 @@ client.on("ready", () => {
 
 client.on("messageCreate", (message) => {
   if (message.author.bot) return;
-  MessageLogger.logCreatedMessage(message.content, message.author.tag);
+  MessageLogger.logCreatedMessage(message);
 
   if (message.content.startsWith(prefix)) {
     const output = CommandProcessor.processCommand(message, prefix);
@@ -33,17 +33,13 @@ client.on("messageCreate", (message) => {
 
 client.on("messageDelete", (message) => {
   if (message.author.bot) return;
-  MessageLogger.logDeletedMessage(message.content, message.author.tag);
+  MessageLogger.logDeletedMessage(message);
   CommandProcessor.configureSniper(message, "deletedMessage");
 });
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
   if (oldMessage.author.bot) return;
-  MessageLogger.logEditedMessage(
-    oldMessage.content,
-    newMessage.content,
-    oldMessage.author.tag
-  );
+  MessageLogger.logEditedMessage(oldMessage, newMessage);
   CommandProcessor.configureSniper(oldMessage, "editedMessage");
 });
 
