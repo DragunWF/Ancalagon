@@ -30,8 +30,8 @@ class CommandProcessor {
 
   static mapCommandExecutions() {
     for (let i = 0; i < commands.length; i++) {
-      commands[i]["execution"] = executions[i][0];
-      commands[i]["object"] = executions[i][1];
+      commands[i].execution = executions[i][0];
+      commands[i].object = executions[i][1];
     }
   }
 
@@ -42,13 +42,13 @@ class CommandProcessor {
       .split(/\s+/);
 
     for (let cmd of commands) {
-      if (cmd["alias"].includes(commandName.toLowerCase())) {
-        if (cmd["hasMsgParameter"]) {
-          if (!cmd["hasArgs"]) return cmd["execution"](cmd["object"], command);
-          return cmd["execution"](cmd["object"], command);
+      if (cmd.alias.includes(commandName.toLowerCase())) {
+        if (cmd.hasMsgParameter) {
+          if (!cmd.hasArgs) return cmd.execution(cmd.object, command);
+          return cmd.execution(cmd.object, command);
         }
-        if (cmd["hasArgs"]) return cmd["execution"](cmd["object"], args);
-        return cmd["execution"](cmd["object"]);
+        if (cmd.hasArgs) return cmd.execution(cmd.object, args);
+        return cmd.execution(cmd.object);
       }
     }
     return false;
