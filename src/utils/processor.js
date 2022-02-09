@@ -45,7 +45,7 @@ class CommandProcessor {
       if (cmd.alias.includes(commandName.toLowerCase())) {
         if (cmd.hasMsgParameter) {
           if (!cmd.hasArgs) return cmd.execution(cmd.object, command);
-          return cmd.execution(cmd.object, command);
+          return cmd.execution(cmd.object, command, args);
         }
         if (cmd.hasArgs) return cmd.execution(cmd.object, args);
         return cmd.execution(cmd.object);
