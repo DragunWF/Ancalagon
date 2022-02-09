@@ -43,5 +43,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
   CommandProcessor.configureSniper(oldMessage, "editedMessage");
 });
 
-keepServerRunning();
-client.login(process.env.TOKEN);
+if (require.main === module) {
+  keepServerRunning();
+  client.login(process.env.TOKEN);
+}
