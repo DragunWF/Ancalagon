@@ -10,7 +10,7 @@ class MessageLogger {
     if (guild !== messageGuild) {
       output.push(
         chalk.blue(
-          `${chalk.bold("Guild Name:")} ${chalk.bold.underline(messageGuild)}\n`
+          `${chalk.bold("Guild:")} ${chalk.bold.underline(messageGuild)}\n`
         )
       );
       guild = messageGuild;
@@ -33,8 +33,8 @@ class MessageLogger {
     // chalk.reset() doesn't work so here's my workaround
     let output = "";
     const templates = {
-      ogLogTemplate: [
-        `Guild Name: ${message.guild.name}`,
+      onLogTemplate: [
+        `Guild: ${message.guild.name}`,
         `Channel: #${message.channel.name}`,
       ],
       onCreate: [`[${message.author.tag}]: ${message.content}`],
@@ -52,19 +52,51 @@ class MessageLogger {
     return output;
   }
 
+  static storeLoggedMessage(type, locationWritten, message, afterEdit = null) {
+    let output = [];
+    let log = [];
+    const locations = {
+      onCreate: "./data/logs/chat_logs.txt",
+      onDelete: "./data/logs/deleted_logs.txt",
+      onUpdate: "./data/logs/edited_logs.txt",
+    };
+
+    const unchalkedLocation = locationWritten
+      ? this.grabUnchalkedTemplate("onLogTemplate", message)
+      : false;
+    const unchalked = this.grabUnchalkedTemplate(
+      type,
+      message,
+      afterEdit ? afterEdit : null
+    );
+    unchalkedLocation ? output.push(unchalkedLocation) : null;
+    output.push(unchalked);
+    for (let line of output) log += `${line}\n`;
+
+    fs.appendFile(locations[type], log, (error) => {
+      if (error) console.log(error);
+    });
+  }
+
   static logCreatedMessage(message) {
     let log = this.messageLogTemplate(message.guild.name, message.channel.name);
+    let isLocationWritten = log ? true : false;
     log += `${chalk.bold.green(`[${message.author.tag}]:`)} ${message.content}`;
     console.log(log);
 
-    const unchalked = this.grabUnchalkedTemplate("onCreate", message);
-    fs.appendFile(
-      "./data/logs/chat_logs.txt",
-      chalk.reset(`${log}\n`),
-      (error) => {
-        if (error) console.log(error);
-      }
+    let unchalkedLog = "";
+    const unchalkedLocation = this.grabUnchalkedTemplate(
+      "onLogTemplate",
+      message
     );
+    const unchalked = this.grabUnchalkedTemplate("onCreate", message);
+    const iterator = isLocationWritten
+      ? unchalkedLocation.concat(unchalked)
+      : unchalked;
+    for (let line of iterator) unchalkedLog += `${line}\n`;
+    fs.appendFile("./data/logs/chat_logs.txt", `${unchalkedLog}`, (error) => {
+      if (error) console.log(error);
+    });
   }
 
   static logDeletedMessage(message) {
@@ -78,14 +110,7 @@ class MessageLogger {
     for (let line of template) log += `${line}\n`;
     console.log(log);
 
-    const unchalked = this.grabUnchalkedTemplate("onDelete", message);
-    fs.appendFile(
-      "./data/logs/deleted_logs.txt",
-      chalk.reset(`${log}\n`),
-      (error) => {
-        if (error) console.log(error);
-      }
-    );
+    this.storeLoggedMessage("onDelete", message);
   }
 
   static logEditedMessage(oldMessage, newMessage) {
@@ -93,8 +118,8 @@ class MessageLogger {
       oldMessage.guild.name,
       newMessage.channel.name
     );
-    let isLogWritten = false;
-    if (log) isLogWritten = true;
+    let isLocationWritten = false;
+    if (log) isLocationWritten = true;
     const template = [
       `${chalk.bold.red("Message Edit Event:")} ${chalk.bold.green(
         `(By: [${oldMessage.author.tag}])`
@@ -105,21 +130,7 @@ class MessageLogger {
     for (let line of template) log += `${line}\n`;
     console.log(log);
 
-    const unchalkedLocation = isLogWritten
-      ? this.grabUnchalkedTemplate("onLogTemplate", message)
-      : null;
-    const unchalked = this.grabUnchalkedTemplate(
-      "onUpdate",
-      oldMessage,
-      newMessage.content
-    );
-    fs.appendFile(
-      "./data/logs/edited_logs.txt",
-      chalk.reset(`${log}\n`),
-      (error) => {
-        if (error) console.log(error);
-      }
-    );
+    this.storeLoggedMessage("onUpdate", oldMessage, newMessage.content);
   }
 }
 

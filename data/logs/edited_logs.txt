@@ -1,0 +1,9 @@
+[0m[1m[31mMessage Edit Event:[39m[22m [1m[32m(By: [DragonWF#9321])[39m[22m[0m
+[0m[1m[35mBefore:[39m[22m Yeah, that's mostly because of data compressin[0m
+[0m[1m[35mAfter:[39m[22m Yeah, that's mostly because of data compression[0m
+[0m[0m
+[0m[0m[0m[1m[31mMessage Edit Event:[39m[22m [1m[32m(By: [Zhong Xina#8446])[39m[22m[0m
+[0m[1m[35mBefore:[39m[22m https://m.youtube.com/watch?v=--89PwHsKJM&feature=youtu.be[0m
+[0m[1m[35mAfter:[39m[22m https://m.youtube.com/watch?v=--89PwHsKJM&feature=youtu.be[0m
+[0m[0m
+[0m[0m
