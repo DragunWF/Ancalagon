@@ -12,15 +12,14 @@ class InspireCommand extends Command {
     return data;
   }
 
-  sendQuoteData(object) {
-    return "**In Development**";
-    // const data = await object.fetchQuoteData();
-    // const embedOutput = new object.MessageEmbed()
-    //   .setColor(object.getRandomEmbedColor())
-    //   .setAuthor({ name: `By ${data[0]["a"]}`, url: "https://zenquotes.io/" })
-    //   .setDescription(`*"${data[0]["q"]}"*`)
-    //   .setFooter({ text: "From `zenquotes.io`" });
-    // return { embeds: [embedOutput] };
+  async sendQuoteData(object, message) {
+    const data = await object.fetchQuoteData();
+    const embedOutput = new object.MessageEmbed()
+      .setColor(object.getRandomEmbedColor())
+      .setAuthor({ name: `${data[0]["a"]}`, url: "https://zenquotes.io/" })
+      .setDescription(`"${data[0]["q"]}"`)
+      .setFooter({ text: "zenquotes.io" });
+    message.channel.send({ embeds: [embedOutput] });
   }
 }
 
