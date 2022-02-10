@@ -106,5 +106,19 @@
     ],
     "timesToExecute": 3,
     "timesMentioned": 0
+  },
+  {
+    "keywords": ["rip"],
+    "responses": [
+      "rip",
+      "Quite a rip indeed",
+      "Very big rip",
+      "Rest in pieces, comrade",
+      "Rest in peace, comrade",
+      "Well that's definitely a rip",
+      "Rip, quite sad"
+    ],
+    "timesToExecute": 2,
+    "timesMentioned": 0
   }
 ]
