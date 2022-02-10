@@ -26,6 +26,7 @@
 
 - `$info`
 - `$ping`
+- `$inspire`
 - `$snipe`
 - `$esnipe`
 
@@ -40,5 +41,7 @@
 ### Economy Commands
 
 - **In Development**
+
+---
 
 **This bot is still in development by the way...**
