@@ -61,7 +61,7 @@
   },
   {
     "keyword": "waw",
-    "responses": ["waw", "wAw", "WaW", "wAW", "WAw"],
+    "responses": ["waw", "WaW"],
     "timesToExecute": 2,
     "timesMentioned": 0
   },
@@ -94,7 +94,7 @@
       "I see a mention of a great hive legend",
       "I see a mention of a famous SkyWars player",
       "Warcook aka SkywarOwl and SeriouslyEZ, very intriguing",
-      "Warcook, I wonder how his music sessions to `Everywhere at the end of the time` went",
+      "Warcook, I wonder how his music sessions to `Everywhere at the end of time` went",
       "A great great hive player has been mentioned",
       "The great warcook has been mentioned, I see",
       "I wonder when Warcook will cook his next noodles, HmMmmMmmm",
@@ -108,7 +108,7 @@
     "timesMentioned": 0
   },
   {
-    "keywords": ["rip"],
+    "keyword": ["rip"],
     "responses": [
       "rip",
       "Quite a rip indeed",
