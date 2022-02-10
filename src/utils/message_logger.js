@@ -3,6 +3,7 @@ const chalk = require("chalk");
 
 let guild = null;
 let channel = null;
+let eventCog = false;
 
 class MessageLogger {
   static checkSameLocation(messageGuild, messageChannel, unchalked, storing) {
@@ -43,11 +44,11 @@ class MessageLogger {
       onUpdate: [
         `Message Edit Event: (By: ${message.author.tag})`,
         `Before: ${message.content}`,
-        `After: ${afterEdit}`,
+        `After: ${afterEdit}\n`,
       ],
       onDelete: [
         `Deleted Message (By: ${message.author.tag})`,
-        `Contents: ${message.content}`,
+        `Contents: ${message.content}\n`,
       ],
     };
     for (let line of templates[type]) output.push(line);
@@ -86,20 +87,25 @@ class MessageLogger {
     log += `${chalk.bold.green(`[${message.author.tag}]:`)} ${message.content}`;
     console.log(log);
 
+    eventCog = true;
     this.storeLoggedMessage("onCreate", message);
   }
 
   static logDeletedMessage(message) {
     let log = this.messageLogTemplate(message.guild.name, message.channel.name);
+    let newline = eventCog ? "\n" : "";
     const template = [
       chalk.bold.red(
-        `Deleted Message: ${chalk.bold.green(`By: [${message.author.tag}]`)}`
+        `${newline}Deleted Message: ${chalk.bold.green(
+          `(By: ${message.author.tag})`
+        )}`
       ),
       `${chalk.bold.magenta("Contents:")} ${message.content}`,
     ];
     for (let line of template) log += `${line}\n`;
     console.log(log);
 
+    eventCog = false;
     this.storeLoggedMessage("onDelete", message);
   }
 
@@ -108,16 +114,17 @@ class MessageLogger {
       oldMessage.guild.name,
       newMessage.channel.name
     );
+    let newline = eventCog ? "\n" : "";
     const template = [
-      `${chalk.bold.red("Message Edit Event:")} ${chalk.bold.green(
-        `(By: [${oldMessage.author.tag}])`
-      )}`,
+      `${newline}${chalk.bold.red("Message Edit Event:")} ` +
+        `${chalk.bold.green(`(By: ${oldMessage.author.tag})`)}`,
       `${chalk.bold.magenta("Before:")} ${oldMessage.content}`,
       `${chalk.bold.magenta("After:")} ${newMessage.content}`,
     ];
     for (let line of template) log += `${line}\n`;
     console.log(log);
 
+    eventCog = false;
     this.storeLoggedMessage("onUpdate", oldMessage, newMessage.content);
   }
 }
