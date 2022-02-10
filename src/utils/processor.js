@@ -41,14 +41,14 @@ class CommandProcessor {
       .substring(prefix.length)
       .split(/\s+/);
 
+    const parameters = [];
     for (let cmd of commands) {
       if (cmd.alias.includes(commandName.toLowerCase())) {
-        if (cmd.hasMsgParameter) {
-          if (!cmd.hasArgs) return cmd.execution(cmd.object, command);
-          return cmd.execution(cmd.object, command, args);
-        }
-        if (cmd.hasArgs) return cmd.execution(cmd.object, args);
-        return cmd.execution(cmd.object);
+        parameters.push(cmd.object);
+        if (cmd.hasMsgParameter) parameters.push(command);
+        if (cmd.hasArgs) parameters.push(args);
+        if (!cmd.isAsync) return cmd.execution(...parameters);
+        cmd.execution(...parameters);
       }
     }
     return false;
