@@ -5,38 +5,40 @@ let guild = null;
 let channel = null;
 
 class MessageLogger {
-  static checkSameLocation(messageGuild, messageChannel) {
+  static checkSameLocation(messageGuild, messageChannel, unchalked, storing) {
     let output = [];
-    if (guild !== messageGuild) {
-      output.push(
+    const templates = {
+      chalked: [
         chalk.blue(
           `${chalk.bold("Guild:")} ${chalk.bold.underline(messageGuild)}\n`
-        )
-      );
-      guild = messageGuild;
+        ),
+        chalk.bold.yellow(`Channel: #${messageChannel}\n`),
+      ],
+      unchalked: [`Guild: ${messageGuild}`, `Channel: #${messageChannel}`],
+    };
+    const template = unchalked ? templates.unchalked : templates.chalked;
+    if (guild !== messageGuild) {
+      output.push(template[0]);
+      if (storing) guild = messageGuild;
     }
     if (channel !== messageChannel) {
-      output.push(chalk.bold.yellow(`Channel: #${messageChannel}\n`));
-      channel = messageChannel;
+      output.push(template[1]);
+      if (storing) channel = messageChannel;
     }
     return output ? output : false;
   }
 
   static messageLogTemplate(guildName, channelName) {
     let log = "";
-    let output = this.checkSameLocation(guildName, channelName);
+    let output = this.checkSameLocation(guildName, channelName, false, false);
     if (output) for (let line of output) log += line;
     return log;
   }
 
   static grabUnchalkedTemplate(type, message, afterEdit = null) {
     // chalk.reset() doesn't work so here's my workaround
-    let output = "";
+    let output = [];
     const templates = {
-      onLogTemplate: [
-        `Guild: ${message.guild.name}`,
-        `Channel: #${message.channel.name}`,
-      ],
       onCreate: [`[${message.author.tag}]: ${message.content}`],
       onUpdate: [
         `Message Edit Event: (By: ${message.author.tag})`,
@@ -48,30 +50,31 @@ class MessageLogger {
         `Contents: ${message.content}`,
       ],
     };
-    for (let line of templates[type]) output += `${line}\n`;
+    for (let line of templates[type]) output.push(line);
     return output;
   }
 
-  static storeLoggedMessage(type, locationWritten, message, afterEdit = null) {
-    let output = [];
-    let log = [];
+  static storeLoggedMessage(type, message, afterEdit = null) {
+    let log = "";
     const locations = {
       onCreate: "./data/logs/chat_logs.txt",
       onDelete: "./data/logs/deleted_logs.txt",
       onUpdate: "./data/logs/edited_logs.txt",
     };
+    const logLocation = this.checkSameLocation(
+      message.guild.name,
+      message.channel.name,
+      true,
+      true
+    );
+    if (logLocation) for (let line of logLocation) log += `${line}\n`;
 
-    const unchalkedLocation = locationWritten
-      ? this.grabUnchalkedTemplate("onLogTemplate", message)
-      : false;
-    const unchalked = this.grabUnchalkedTemplate(
+    const unchalkedTemplate = this.grabUnchalkedTemplate(
       type,
       message,
       afterEdit ? afterEdit : null
     );
-    unchalkedLocation ? output.push(unchalkedLocation) : null;
-    output.push(unchalked);
-    for (let line of output) log += `${line}\n`;
+    for (let line of unchalkedTemplate) log += `${line}\n`;
 
     fs.appendFile(locations[type], log, (error) => {
       if (error) console.log(error);
@@ -80,23 +83,10 @@ class MessageLogger {
 
   static logCreatedMessage(message) {
     let log = this.messageLogTemplate(message.guild.name, message.channel.name);
-    let isLocationWritten = log ? true : false;
     log += `${chalk.bold.green(`[${message.author.tag}]:`)} ${message.content}`;
     console.log(log);
 
-    let unchalkedLog = "";
-    const unchalkedLocation = this.grabUnchalkedTemplate(
-      "onLogTemplate",
-      message
-    );
-    const unchalked = this.grabUnchalkedTemplate("onCreate", message);
-    const iterator = isLocationWritten
-      ? unchalkedLocation.concat(unchalked)
-      : unchalked;
-    for (let line of iterator) unchalkedLog += `${line}\n`;
-    fs.appendFile("./data/logs/chat_logs.txt", `${unchalkedLog}`, (error) => {
-      if (error) console.log(error);
-    });
+    this.storeLoggedMessage("onCreate", message);
   }
 
   static logDeletedMessage(message) {
@@ -118,8 +108,6 @@ class MessageLogger {
       oldMessage.guild.name,
       newMessage.channel.name
     );
-    let isLocationWritten = false;
-    if (log) isLocationWritten = true;
     const template = [
       `${chalk.bold.red("Message Edit Event:")} ${chalk.bold.green(
         `(By: [${oldMessage.author.tag}])`
