@@ -8,7 +8,7 @@ class KeyWordResponder {
   }
 
   static pickRandomResponse(data) {
-    return data.responses[Math.floor(Math.random() * data.keyword.length)];
+    return data.responses[Math.floor(Math.random() * data.responses.length)];
   }
 
   static containsKeyword(string, data) {

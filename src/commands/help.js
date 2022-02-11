@@ -17,7 +17,7 @@ class HelpCommand extends Command {
   getHelpCommandList() {
     const commands = ["general", "games", "memes", "economy"];
     const embedOutput = new this.MessageEmbed()
-      .setColor(this.getRandomEmbedColor())
+      .setColor("#9966cc")
       .setTitle("Command Categories :ringed_planet:")
       .setDescription(this.concatenateCommands(commands, true, "help"));
     return { embeds: [embedOutput] };
@@ -26,7 +26,7 @@ class HelpCommand extends Command {
   getGeneralCommandList() {
     const commands = ["info", "ping", "inspire", "snipe", "esnipe"];
     const embedOutput = new this.MessageEmbed()
-      .setColor(this.getRandomEmbedColor())
+      .setColor("#9966cc")
       .setTitle("General Command List :tools:")
       .setDescription(this.concatenateCommands(commands, false));
     return { embeds: [embedOutput] };
