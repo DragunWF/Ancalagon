@@ -9,6 +9,7 @@
 ### Links
 
 - [My Website](https://dragonwf.netlify.app/)
+- [Bot Status](https://Ancalagon.dragunwf.repl.co)
 - [Discord Server](https://discord.gg/9JdnnPN)
 - [DragonBot](https://github.com/DragunWF/DragonBot)
 
