@@ -1,1 +1,1 @@
-run="src/main.js"
+run="node src/main.js"
