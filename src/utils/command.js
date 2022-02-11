@@ -10,7 +10,7 @@ const embedMessageColors = [
   "#FFC0CB", // Pink
   "#D5F6FB", // Aqua
   "#9BD087", // Pastel Green
-  "#A4D8D8.", // Pastel Cyan
+  "#A4D8D8", // Pastel Cyan
   "#FDFD96", // Pastel Yellow
   "#836953", // Pastel Brown
   "#AEC6CF", // Pastel Blue

@@ -93,7 +93,7 @@ class MessageLogger {
 
   static logDeletedMessage(message) {
     let log = this.messageLogTemplate(message.guild.name, message.channel.name);
-    let newline = eventCog ? "\n" : "";
+    const newline = eventCog ? "\n" : "";
     const template = [
       chalk.bold.red(
         `${newline}Deleted Message: ${chalk.bold.green(
@@ -114,7 +114,7 @@ class MessageLogger {
       oldMessage.guild.name,
       newMessage.channel.name
     );
-    let newline = eventCog ? "\n" : "";
+    const newline = eventCog ? "\n" : "";
     const template = [
       `${newline}${chalk.bold.red("Message Edit Event:")} ` +
         `${chalk.bold.green(`(By: ${oldMessage.author.tag})`)}`,
