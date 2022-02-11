@@ -3,7 +3,7 @@ import express from "express";
 const server = express();
 
 server.all("/", (request, response) => {
-  response.send("Ancalagon has now been awakened!");
+  response.sendFile("page.html");
 });
 
 function keepServerRunning() {
