@@ -25,7 +25,7 @@ class SnipeCommand extends Command {
     ];
     if (object.deletedMessage) {
       const user = object.deletedMessage.author;
-      const embed = new object.MessageEmbed()
+      const embedOutput = new object.MessageEmbed()
         .setColor(object.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
@@ -34,7 +34,7 @@ class SnipeCommand extends Command {
         .setDescription(object.deletedMessage.content)
         .setTimestamp()
         .setFooter({ text: "Deleted message" });
-      return { embeds: [embed] };
+      return { embeds: [embedOutput] };
     }
     return responses[Math.floor(Math.random() * responses.length)];
   }
@@ -49,7 +49,7 @@ class SnipeCommand extends Command {
     ];
     if (object.originalMessage) {
       const user = object.originalMessage.author;
-      const embed = new object.MessageEmbed()
+      const embedOutput = new object.MessageEmbed()
         .setColor(object.getRandomEmbedColor())
         .setAuthor({
           name: String(user.tag),
@@ -58,7 +58,7 @@ class SnipeCommand extends Command {
         .setDescription(object.originalMessage.content)
         .setTimestamp()
         .setFooter({ text: "Unedited message" });
-      return { embeds: [embed] };
+      return { embeds: [embedOutput] };
     }
     return responses[Math.floor(Math.random() * responses.length)];
   }

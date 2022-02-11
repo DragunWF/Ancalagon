@@ -7,7 +7,7 @@ let eventCog = false;
 
 class MessageLogger {
   static checkSameLocation(messageGuild, messageChannel, unchalked, storing) {
-    let output = [];
+    const output = [];
     const templates = {
       chalked: [
         chalk.blue(
@@ -31,7 +31,7 @@ class MessageLogger {
 
   static messageLogTemplate(guildName, channelName) {
     let log = "";
-    let output = this.checkSameLocation(guildName, channelName, false, false);
+    const output = this.checkSameLocation(guildName, channelName, false, false);
     if (output) for (let line of output) log += line;
     return log;
   }

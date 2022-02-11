@@ -16,7 +16,7 @@ class InspireCommand extends Command {
     const data = await object.fetchQuoteData();
     const embedOutput = new object.MessageEmbed()
       .setColor(object.getRandomEmbedColor())
-      .setAuthor({ name: `${data[0]["a"]}`, url: "https://zenquotes.io/" })
+      .setAuthor({ name: `${data[0]["a"]}` })
       .setDescription(`"${data[0]["q"]}"`)
       .setFooter({ text: "zenquotes.io" });
     message.channel.send({ embeds: [embedOutput] });
