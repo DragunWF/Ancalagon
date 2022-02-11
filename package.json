@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An improved discord bot for my personal discord server.",
   "main": "src/main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
