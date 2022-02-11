@@ -1,9 +1,9 @@
-const express = require("express");
+import express from "express";
 
 const server = express();
 
 server.all("/", (request, response) => {
-  response("Ancalagon has now been awakened!");
+  response.send("Ancalagon has now been awakened!");
 });
 
 function keepServerRunning() {
@@ -12,4 +12,4 @@ function keepServerRunning() {
   });
 }
 
-module.exports = keepServerRunning;
+export default keepServerRunning;

@@ -1,4 +1,4 @@
-const Command = require("../utils/command");
+import Command from "../utils/command.js";
 
 const description = `
 Hello! This is a bot written in JavaScript by \`DragonWF#9321\`.
@@ -34,4 +34,4 @@ class InfoCommand extends Command {
   }
 }
 
-module.exports = InfoCommand;
+export default InfoCommand;

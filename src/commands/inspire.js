@@ -1,5 +1,5 @@
-const fetch = require("node-fetch");
-const Command = require("../utils/command");
+import fetch from "node-fetch";
+import Command from "../utils/command.js";
 
 class InspireCommand extends Command {
   constructor() {
@@ -23,4 +23,4 @@ class InspireCommand extends Command {
   }
 }
 
-module.exports = InspireCommand;
+export default InspireCommand;

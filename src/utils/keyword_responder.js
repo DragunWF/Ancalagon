@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 const keywords = JSON.parse(fs.readFileSync("./data/bot/keywords.json"));
 
@@ -34,4 +34,4 @@ class KeyWordResponder {
   }
 }
 
-module.exports = KeyWordResponder;
+export default KeyWordResponder;

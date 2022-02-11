@@ -1,10 +1,10 @@
-const fs = require("fs");
+import fs from "fs";
 
-const HelpCommand = require("../commands/help");
-const InfoCommand = require("../commands/info");
-const PingCommand = require("../commands/ping");
-const SnipeCommand = require("../commands/snipe");
-const InspireCommand = require("../commands/inspire");
+import HelpCommand from "../commands/help.js";
+import InfoCommand from "../commands/info.js";
+import PingCommand from "../commands/ping.js";
+import SnipeCommand from "../commands/snipe.js";
+import InspireCommand from "../commands/inspire.js";
 
 const help = new HelpCommand();
 const info = new InfoCommand();
@@ -55,4 +55,4 @@ class CommandProcessor {
   }
 }
 
-module.exports = CommandProcessor;
+export default CommandProcessor;

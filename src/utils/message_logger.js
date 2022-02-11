@@ -1,5 +1,5 @@
-const fs = require("fs");
-const chalk = require("chalk");
+import fs from "fs";
+import chalk from "chalk";
 
 let guild = null;
 let channel = null;
@@ -129,4 +129,4 @@ class MessageLogger {
   }
 }
 
-module.exports = MessageLogger;
+export default MessageLogger;

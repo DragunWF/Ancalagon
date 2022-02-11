@@ -1,13 +1,13 @@
-require("dotenv").config();
+import "dotenv/config";
+import Discord from "discord.js";
 
-const Discord = require("discord.js");
+import CommandProcessor from "./utils/processor.js";
+import MessageLogger from "./utils/message_logger.js";
+import KeyWordResponder from "./utils/keyword_responder.js";
+import keepServerRunning from "./utils/server.js";
+
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 const prefix = "$";
-
-const CommandProcessor = require("./utils/processor");
-const MessageLogger = require("./utils/message_logger");
-const KeyWordResponder = require("./utils/keyword_responder");
-const keepServerRunning = require("./utils/server");
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -43,7 +43,5 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
   CommandProcessor.configureSniper(oldMessage, "editedMessage");
 });
 
-if (require.main === module) {
-  keepServerRunning();
-  client.login(process.env.TOKEN);
-}
+keepServerRunning();
+client.login(process.env.TOKEN);

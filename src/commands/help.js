@@ -1,4 +1,4 @@
-const Command = require("../utils/command");
+import Command from "../utils/command.js";
 
 class HelpCommand extends Command {
   constructor() {
@@ -61,4 +61,4 @@ class HelpCommand extends Command {
   }
 }
 
-module.exports = HelpCommand;
+export default HelpCommand;

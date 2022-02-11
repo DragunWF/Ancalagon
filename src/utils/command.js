@@ -1,4 +1,5 @@
-const { MessageEmbed } = require("discord.js");
+import { MessageEmbed } from "discord.js";
+
 const embedMessageColors = [
   "#0F52BA", // Sappire Blue
   "#9b111e", // Ruby Red
@@ -33,4 +34,4 @@ class Command {
   }
 }
 
-module.exports = Command;
+export default Command;

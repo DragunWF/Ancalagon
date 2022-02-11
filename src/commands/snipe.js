@@ -1,4 +1,4 @@
-const Command = require("../utils/command");
+import Command from "../utils/command.js";
 
 class SnipeCommand extends Command {
   constructor() {
@@ -64,4 +64,4 @@ class SnipeCommand extends Command {
   }
 }
 
-module.exports = SnipeCommand;
+export default SnipeCommand;
