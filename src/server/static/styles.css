@@ -14,9 +14,6 @@ html {
 
 body {
   background-color: #330055;
-  background-image: url("/data/page/background.svg");
-  background-attachment: fixed;
-  background-size: contain;
 }
 
 /* Objects */
@@ -28,16 +25,19 @@ body {
 
 /* Main */
 .content {
+  background-image: url("background.svg");
+  background-attachment: fixed;
+  background-size: contain;
+  color: var(--color-text);
   width: 100%;
   height: 100vh;
-  color: var(--color-text);
 }
 
 .container {
   background: var(--color-container);
   border-radius: 15px;
-  padding: 1.5rem;
   flex-direction: column;
+  padding: 1.5rem;
 }
 
 .container h1 {
@@ -45,10 +45,10 @@ body {
 }
 
 .container p {
-  width: 50ch;
-  text-align: center;
   font-size: 2rem;
   font-weight: 500;
+  text-align: center;
+  width: 50ch;
 }
 
 .container img {
