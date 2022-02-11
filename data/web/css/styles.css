@@ -25,7 +25,7 @@ body {
 
 /* Main */
 .content {
-  background-image: url("background.svg");
+  background-image: url("../img/background.svg");
   background-attachment: fixed;
   background-size: contain;
   color: var(--color-text);
