@@ -61,3 +61,25 @@ body {
 .container img:hover {
   transform: scale(1.025);
 }
+
+@media screen and (max-width: 768px) {
+  .container p {
+    width: 28ch;
+  }
+
+  .container img {
+    width: 25rem;
+    height: 25rem;
+  }
+}
+
+@media screen and (max-width: 1028px) {
+  .container p {
+    width: 35ch;
+  }
+
+  .container img {
+    width: 30rem;
+    height: 30rem;
+  }
+}
