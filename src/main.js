@@ -4,7 +4,7 @@ import Discord from "discord.js";
 import CommandProcessor from "./utils/processor.js";
 import MessageLogger from "./utils/message_logger.js";
 import KeyWordResponder from "./utils/keyword_responder.js";
-import keepServerRunning from "./utils/server.js";
+import keepServerRunning from "./server/server.js";
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 const prefix = "$";
