@@ -1,0 +1,63 @@
+:root {
+  --color-text: #fff;
+  --color-container: #330055;
+}
+
+::selection {
+  background: #9966cc;
+  color: var(--color-text);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #330055;
+  background-image: url("/data/page/background.svg");
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+/* Objects */
+.flex-object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main */
+.content {
+  width: 100%;
+  height: 100vh;
+  color: var(--color-text);
+}
+
+.container {
+  background: var(--color-container);
+  border-radius: 15px;
+  padding: 1.5rem;
+  flex-direction: column;
+}
+
+.container h1 {
+  font-size: 3.5rem;
+}
+
+.container p {
+  width: 50ch;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.container img {
+  width: 40rem;
+  height: 40rem;
+  border-radius: 25px;
+  transition: all 0.25s;
+}
+
+.container img:hover {
+  transform: scale(1.025);
+}
