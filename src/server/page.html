@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <section class="content flex-object">
@@ -32,4 +33,17 @@
       </article>
     </section>
   </body>
+  <script>
+    $(document).ready(() => {
+      const hiddenContents = [".content", ".container"];
+
+      for (let content of hiddenContents) {
+        $(content).hide();
+      }
+
+      $(".content").slideDown(1500, () => {
+        $(".container").fadeIn(1500);
+      });
+    });
+  </script>
 </html>
