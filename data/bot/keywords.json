@@ -120,5 +120,19 @@
     ],
     "timesToExecute": 2,
     "timesMentioned": 0
+  },
+  {
+    "keyword": ["aurora"],
+    "responses": [
+      "The Neko Resetter himself",
+      "Aurora, back from the dead I see",
+      "The founder of the castle's party games, Aurora",
+      "The long awaited sequel, Aurora's return",
+      "The witch king",
+      "The poetic return of Aurora",
+      "Aurora's return, how majestic"
+    ],
+    "timesToExecute": 3,
+    "timesMentioned": 0
   }
 ]
