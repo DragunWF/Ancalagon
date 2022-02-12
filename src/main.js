@@ -4,6 +4,7 @@ import Discord from "discord.js";
 import CommandProcessor from "./utils/processor.js";
 import MessageLogger from "./utils/message_logger.js";
 import KeyWordResponder from "./utils/keyword_responder.js";
+import Counter from "./utils/counting.js";
 import keepServerRunning from "./utils/server.js";
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -27,6 +28,7 @@ client.on("messageCreate", (message) => {
     if (output) message.channel.send(output);
   }
 
+  Counter.checkCount(message);
   const response = KeyWordResponder.checkMessage(message.content);
   if (response) message.channel.send(response);
 });
