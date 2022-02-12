@@ -25,6 +25,7 @@ const embedMessageColors = [
 class Command {
   constructor() {
     this.MessageEmbed = MessageEmbed;
+    this.mainColor = "#9966cc";
   }
 
   getRandomEmbedColor() {
