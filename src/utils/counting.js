@@ -27,12 +27,30 @@ class Counter {
     });
   }
 
-  static restartCount() {
-    return;
+  static onRestart(message) {
+    const currentNumber = `**${jsonData[dataIndex].count}**`;
+    const user = `<@!${message.author.id}>`;
+    const responses = [
+      `WRONG, ${user} ruined it at ${currentNumber}. Next number is **1**.`,
+      `Waw, ${user} ruined it at ${currentNumber}. We're back at the start, next number is **1**.`,
+      `Well that's quite unfortunate, next number is **1**. ${user} ruined it at ${currentNumber}.`,
+      `Oh well, seems like ${user} ruined it at ${currentNumber}. Next number is **1**.`,
+      `Rip, ${user} ruined it at ${currentNumber}. Next number is **1**.`,
+    ];
+    const reactions = ["❌", "🤡", "💀", "💩"];
+    message.react(reactions[Math.floor(Math.random() * reactions.length)]);
+    message.channel.send(
+      responses[Math.floor(Math.random() * responses.length)]
+    );
   }
 
-  static updateCount() {
-    return;
+  static onUpdate(message, number) {
+    if (number % 100 === 0) {
+      message.react("🎉");
+    } else {
+      const reactions = ["✅", "☑️"];
+      message.react(Math.floor(Math.random() * reactions.length));
+    }
   }
 
   static checkChannel(channelId) {
@@ -52,26 +70,13 @@ class Counter {
 
     const jsonData = this.readCountData();
     const playerNumber = eval(message.content);
-    const correctNumber = jsonData[dataIndex].count + 1;
-    if (playerNumber === correctNumber) {
-      this.writeCountData("update", dataIndex);
-      const reactions = ["✅", "☑️"];
-      message.react(Math.floor(Math.random() * reactions.length));
+    const correctNumber = jsonData[dataIndex[0]].count + 1;
+    if (playerNumber == correctNumber) {
+      this.writeCountData("update", dataIndex[0]);
+      this.onUpdate(message, correctNumber);
     } else {
-      this.writeCountData("restart", dataIndex);
-      const currentNumber = `**${correctNumber - 1}**`;
-      const user = `<@!${message.author.id}>`;
-      const responses = [
-        `WRONG, ${user} ruined it at ${currentNumber}. Next number is **1**.`,
-        `Waw, ${user} ruined it at ${currentNumber}. We're back at the start, next number is **1**.`,
-        `Well that's quite unfortunate, next number is **1**. ${user} ruined it at ${currentNumber}.`,
-        `Oh well, seems like ${user} ruined it at ${currentNumber}. Next number is **1**.`,
-        `Rip, ${user} ruined it at ${currentNumber}. Next number is **1**.`,
-      ];
-      message.channel.send(
-        responses[Math.floor(Math.random() * responses.length)]
-      );
-      message.react("❌");
+      this.writeCountData("restart", dataIndex[0]);
+      this.onRestart(message);
     }
   }
 }
