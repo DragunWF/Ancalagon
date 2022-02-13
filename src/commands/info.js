@@ -17,7 +17,7 @@ class InfoCommand extends Command {
 
   getBotInformation(object) {
     const embedOutput = new object.MessageEmbed()
-      .setColor(this.mainColor)
+      .setColor(object.mainColor)
       .setAuthor({
         name: "DragonWF#9321",
         iconURL:
