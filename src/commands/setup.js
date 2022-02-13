@@ -6,20 +6,21 @@ class SetupCommand extends Command {
     super();
   }
 
-  static checkData(guildId) {
+  checkData(guildId) {
     const jsonData = fs.readFileSync("./data/bot/counting.json", "utf-8");
     for (let dataSet of JSON.parse(jsonData))
       if (dataSet.guildId === guildId) return true;
     return false;
   }
 
-  static writeOnData(message, type) {
+  writeOnData(message, type) {
     const writingTypes = {
       counting: [
         "./data/bot/counting.json",
         {
           guildId: message.guild.id,
           channelId: message.channel.id,
+          lastUserId: null,
           count: 0,
         },
       ],
@@ -45,11 +46,18 @@ class SetupCommand extends Command {
     });
   }
 
-  static setupCounting(message) {
+  setupCounting(message) {
     if (this.checkData(message.guild.id))
       return "Counting Channel already set up in this guild";
     this.writeOnData(message, "counting");
-    return "**Counting channel** has been set up sucessfully!";
+    const embedOutput = new this.MessageEmbed()
+      .setColor(this.mainColor)
+      .setTitle("Counter Initialized")
+      .setDescription(
+        "Counting channel has been set up in this guild sucessfully"
+      )
+      .setFooter({ text: "Have fun!" });
+    return { embeds: [embedOutput] };
   }
 
   processSetupCommand(object, message, args) {
