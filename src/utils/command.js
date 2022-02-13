@@ -18,7 +18,6 @@ const embedMessageColors = [
   "#C3B1E1", // Pastel Purple
   "#FAC898", // Pastel Orange
   "#f49ac2", // Pastel Magenta
-  "#FOB6D5", // Pastel Pink
   "#E39FF6", // Lavender
 ];
 
