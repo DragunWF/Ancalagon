@@ -1,4 +1,5 @@
 import fs from "fs";
+import Economy from "./economy_handler.js";
 
 const fileLocation = "./data/bot/counting.json";
 let jsonData = null;
@@ -69,12 +70,11 @@ class Counter {
   static checkCount(message) {
     this.setCountData(message);
     if (!dataIndex) return false;
-    const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    const operators = ["+", "-", "*", "/", "%"];
-    for (let chr of message.content.split(" ").join())
-      if (!digits.includes(chr) && !operators.includes(chr)) return false;
+    const countable = "0123456789+-*/%".split();
+    const playerMessage = message.content.split(" ").join();
+    for (let chr of playerMessage) if (!countable.includes(chr)) return false;
 
-    const playerNumber = eval(message.content);
+    const playerNumber = eval(playerMessage);
     const correctNumber = jsonData[dataIndex].count + 1;
     const lastUser = jsonData[dataIndex].lastUserId;
     if (playerNumber === correctNumber && message.author.id !== lastUser) {
