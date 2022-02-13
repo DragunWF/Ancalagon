@@ -54,7 +54,7 @@ class SetupCommand extends Command {
       .setColor(this.mainColor)
       .setTitle("Counter Initialized")
       .setDescription(
-        "Counting channel has been set up in this guild sucessfully"
+        "Counting channel has been set up in this guild successfully"
       )
       .setFooter({ text: "Have fun!" });
     return { embeds: [embedOutput] };
