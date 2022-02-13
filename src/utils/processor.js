@@ -27,8 +27,8 @@ const executions = [
 
 class CommandProcessor {
   static configureSniper(message, type) {
-    if (type === "deletedMessage") sniper.deletedMessage = message;
-    else sniper.originalMessage = message;
+    if (type === "deletedMessage") sniper.storeDeletedMessage(message);
+    else sniper.storeOriginalMessage(message);
   }
 
   static mapCommandExecutions() {
