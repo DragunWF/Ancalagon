@@ -13,18 +13,21 @@ const embedMessageColors = [
   "#9BD087", // Pastel Green
   "#A4D8D8", // Pastel Cyan
   "#FDFD96", // Pastel Yellow
-  "#836953", // Pastel Brown
   "#AEC6CF", // Pastel Blue
   "#C3B1E1", // Pastel Purple
   "#FAC898", // Pastel Orange
-  "#f49ac2", // Pastel Magenta
   "#E39FF6", // Lavender
 ];
+const _mainColor = new WeakMap();
 
 class Command {
   constructor() {
     this.MessageEmbed = MessageEmbed;
-    this.mainColor = "#9966cc";
+    _mainColor.set(this, "#9966cc");
+  }
+
+  get mainColor() {
+    return _mainColor.get(this);
   }
 
   getRandomEmbedColor() {
