@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "guildId": "message.guild.id",
+    "channelId": "message.channel.id",
+    "lastUserId": null,
+    "count": 0
+  },
+  {
+    "guildId": "414052037580554251",
+    "channelId": "937381755709685760",
+    "lastUserId": null,
+    "count": 0
+  }
+]
