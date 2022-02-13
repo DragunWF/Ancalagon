@@ -1,33 +1,39 @@
 import fs from "fs";
 
 const fileLocation = "./data/bot/counting.json";
+let jsonData = null;
+let dataIndex = null;
 
 class Counter {
   static readCountData() {
-    const jsonData = fs.readFileSync(fileLocation, "utf-8");
-    return JSON.parse(jsonData);
+    const data = fs.readFileSync(fileLocation, "utf-8");
+    return JSON.parse(data);
   }
 
-  static writeCountData(eventType, index) {
-    const jsonData = readCountData();
+  static getDataIndex(guildId, channelId) {
+    for (let dataSet of jsonData)
+      if (dataSet.guildId === guildId && dataSet.channelId === channelId)
+        return jsonData.indexOf(dataSet);
+    return null;
+  }
+
+  static setCountData(message) {
+    jsonData = this.readCountData();
+    dataIndex = this.getDataIndex(message.guild.id, message.channel.id);
+  }
+
+  static writeCountData(eventType) {
     const events = {
       restart: 0,
-      update: jsonData[index].count + 1,
+      update: jsonData[dataIndex].count + 1,
     };
-    switch (eventType) {
-      case "restart":
-        jsonData[index].count = events[0];
-        break;
-      case "update":
-        jsonData[index].count = events[1];
-        break;
-    }
+    jsonData[dataIndex].count = events[eventType];
     fs.writeFile(fileLocation, JSON.stringify(jsonData, null, 2), (error) => {
       if (error) console.log(error);
     });
   }
 
-  static onRestart(message) {
+  static onRestartCount(message) {
     const currentNumber = `**${jsonData[dataIndex].count}**`;
     const user = `<@!${message.author.id}>`;
     const responses = [
@@ -37,46 +43,37 @@ class Counter {
       `Oh well, seems like ${user} ruined it at ${currentNumber}. Next number is **1**.`,
       `Rip, ${user} ruined it at ${currentNumber}. Next number is **1**.`,
     ];
-    const reactions = ["❌", "🤡", "💀", "💩"];
+    const reactions = ["❌", "🤡", "💀", "💩", "👺"];
     message.react(reactions[Math.floor(Math.random() * reactions.length)]);
     message.channel.send(
       responses[Math.floor(Math.random() * responses.length)]
     );
   }
 
-  static onUpdate(message, number) {
-    if (number % 100 === 0) {
-      message.react("🎉");
-    } else {
+  static onUpdateCount(message, number) {
+    if (number % 100 === 0) message.react("🎉");
+    else {
       const reactions = ["✅", "☑️"];
-      message.react(Math.floor(Math.random() * reactions.length));
+      message.react(reactions[Math.floor(Math.random() * reactions.length)]);
     }
   }
 
-  static checkChannel(channelId) {
-    const jsonData = readCountData();
-    for (let dataSet of jsonData)
-      if (dataSet.channelId === channelId) return [jsonData.indexOf(dataSet)];
-    return false;
-  }
-
   static checkCount(message) {
-    const dataIndex = this.checkchannel(message.channel.id);
+    this.setCountData(message);
     if (!dataIndex) return false;
     const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     const operators = ["+", "-", "*", "/", "%"];
-    for (let chr of message.content)
+    for (let chr of message.content.split(" ").join())
       if (!digits.includes(chr) && !operators.includes(chr)) return false;
 
-    const jsonData = this.readCountData();
     const playerNumber = eval(message.content);
-    const correctNumber = jsonData[dataIndex[0]].count + 1;
-    if (playerNumber == correctNumber) {
-      this.writeCountData("update", dataIndex[0]);
-      this.onUpdate(message, correctNumber);
+    const correctNumber = jsonData[dataIndex].count + 1;
+    if (playerNumber === correctNumber) {
+      this.onUpdateCount(message, correctNumber);
+      this.writeCountData("update");
     } else {
-      this.writeCountData("restart", dataIndex[0]);
-      this.onRestart(message);
+      this.onRestartCount(message);
+      this.writeCountData("restart");
     }
   }
 }
