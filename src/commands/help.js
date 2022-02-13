@@ -33,7 +33,7 @@ class HelpCommand extends Command {
   }
 
   getGameCommandList() {
-    return "**In Construction**";
+    return "Only command here is `$setup counting`. More will be added in the future";
   }
 
   getMemeCommandList() {

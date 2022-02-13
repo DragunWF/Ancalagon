@@ -33,7 +33,7 @@
 
 ### Game Commands
 
-- **In Development**
+- `$setup counting`
 
 ### Meme Commands
 
