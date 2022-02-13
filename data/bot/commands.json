@@ -50,7 +50,7 @@
   {
     "alias": "setup",
     "hasArgs": true,
-    "hasMsgParameter": false,
+    "hasMsgParameter": true,
     "isAsync": false,
     "execution": "",
     "object": null
