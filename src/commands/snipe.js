@@ -1,18 +1,29 @@
 import Command from "../utils/command.js";
 
+const _deletedMessage = new WeakMap();
+const _originalMessage = new WeakMap();
+
 class SnipeCommand extends Command {
   constructor() {
     super();
-    this.originalMessage = null;
-    this.deletedMessage = null;
+    _deletedMessage.set(this, null);
+    _originalMessage.set(this, null);
   }
 
-  storeDeletedMessage(message) {
-    this.deletedMessage = message;
+  get deletedMessage() {
+    _deletedMessage.get(this);
   }
 
-  storeOriginalMessage(message) {
-    this.originalMessage = message;
+  set deletedMessage(message) {
+    _originalMessage.set(this, message);
+  }
+
+  get originalMessage() {
+    _originalMessage.get(this);
+  }
+
+  set originalMessage(message) {
+    _originalMessage.set(this, message);
   }
 
   snipeDeletedMessage(object) {
