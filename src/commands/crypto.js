@@ -28,6 +28,7 @@ class CryptoCommand extends Command {
     let output = "";
     for (let i = 0; i < array.length; i++) {
       const value = array[i][this.coins[i]["id"]][currency]
+        .toFixed(2)
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       output += `**${

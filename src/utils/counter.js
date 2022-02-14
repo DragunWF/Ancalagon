@@ -63,7 +63,7 @@ class Counter {
     if (number % 100 === 0) message.react("🎉");
     else {
       const reactions = ["✅", "☑️"];
-      message.react(reactions[number % 2 === 0 ? 0 : 1]);
+      message.react(reactions[number % 2]);
     }
   }
 
