@@ -54,5 +54,13 @@
     "isAsync": false,
     "execution": "",
     "object": null
+  },
+  {
+    "alias": ["nft", "crypto", "cryptocurrency"],
+    "hasArgs": true,
+    "hasMsgParameter": true,
+    "isAsync": true,
+    "execution": "",
+    "object": null
   }
 ]
