@@ -1,4 +1,5 @@
 import fs from "fs";
+import chalk from "chalk";
 
 const fileLocation = "./data/bot/economy.json";
 let data = null;
@@ -38,6 +39,11 @@ class Economy {
     };
     data.push(userData);
     this.writeEconomyData();
+    console.log(
+      chalk.bold.underline.greenBright(
+        `${message.author.tag} has been registered!`
+      )
+    );
   }
 
   static checkTagChange(authorTag) {
