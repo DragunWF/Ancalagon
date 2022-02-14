@@ -28,6 +28,7 @@
 - `$info`
 - `$ping`
 - `$inspire`
+- `$crypto`
 - `$snipe`
 - `$esnipe`
 
