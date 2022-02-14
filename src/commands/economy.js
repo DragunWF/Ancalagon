@@ -1,20 +1,16 @@
 import Command from "../utils/command";
 import Economy from "../utils/economy_handler";
 
-const fileLocation = "./data/bot/economy.json";
 let data = null;
+let dataIndex = null;
 
 class EconomyCommand extends Command {
   constructor() {
     super();
   }
 
-  readEconomyData() {
-    const jsonData = fs.readFileSync(fileLocation, "utf8");
-    data = JSON.parse(jsonData);
-  }
-
   scavenge(message) {
+    Economy.checkUser(message);
     const chance = Math.floor(Math.random() * 20) + 1;
     if (chance === 1) {
       const amount = Math.floor(Math.random() * (150 - 50) + 50);
@@ -27,12 +23,28 @@ class EconomyCommand extends Command {
     }
   }
 
-  balance(message) {
-    return;
+  balance(object, message) {
+    Economy.checkUser(message);
+    data = Economy.readEconomyData(true);
+    dataIndex = Economy.getDataIndex(message.author.id);
+    const value = data[dataIndex].coins
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const embedOutput = new object.MessageEmbed()
+      .setColor(object.getRandomEmbedColor())
+      .setTitle("Coin Balance")
+      .setAuthor({
+        name: message.author.tag,
+        iconURL: message.author.avatarURL(),
+      })
+      .setDescription(`Your Coin Amount: **${value}** 💷`)
+      .setFooter({ text: "Dragon's Economy" });
+    return { embeds: [embedOutput] };
   }
 
-  leaderboard(message) {
-    return;
+  leaderboard(object, message) {
+    Economy.readEconomyData(true);
+    // Add more code here
   }
 }
 
