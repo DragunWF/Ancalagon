@@ -62,5 +62,29 @@
     "isAsync": true,
     "execution": "",
     "object": null
+  },
+  {
+    "alias": ["scavenge"],
+    "hasArgs": false,
+    "hasMsgParameter": true,
+    "isAsync": false,
+    "execution": "",
+    "object": null
+  },
+  {
+    "alias": ["bal", "balance"],
+    "hasArgs": false,
+    "hasMsgParameter": true,
+    "isAsync": false,
+    "execution": "",
+    "object": null
+  },
+  {
+    "alias": ["rich", "leaderboard"],
+    "hasArgs": false,
+    "hasMsgParameter": true,
+    "isAsync": false,
+    "execution": "",
+    "object": null
   }
 ]
