@@ -71,7 +71,7 @@ class Counter {
     this.setCountData(message);
     if (!dataIndex) return false;
     const countable = "0123456789+-*/%".split();
-    const playerMessage = message.content.split(" ").join();
+    const playerMessage = message.content.split(" ").join("");
     for (let chr of playerMessage) if (!countable.includes(chr)) return false;
 
     const playerNumber = eval(playerMessage);
