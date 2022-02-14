@@ -7,6 +7,7 @@ import SnipeCommand from "../commands/snipe.js";
 import InspireCommand from "../commands/inspire.js";
 import SetupCommand from "../commands/setup.js";
 import CryptoCommand from "../commands/crypto.js";
+import EconomyCommand from "../commands/economy.js";
 
 const help = new HelpCommand();
 const info = new InfoCommand();
@@ -15,6 +16,7 @@ const sniper = new SnipeCommand();
 const inspire = new InspireCommand();
 const setup = new SetupCommand();
 const crypto = new CryptoCommand();
+const economy = new EconomyCommand();
 
 const commands = JSON.parse(fs.readFileSync("./data/bot/commands.json"));
 const executions = [
@@ -26,6 +28,9 @@ const executions = [
   [info.getBotInformation, sniper],
   [setup.processSetupCommand, setup],
   [crypto.sendCryptoData, crypto],
+  [economy.scavenge, economy],
+  [economy.balance, economy],
+  [economy.leaderboard, economy],
 ];
 
 class CommandProcessor {
