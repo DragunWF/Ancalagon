@@ -6,6 +6,7 @@ import PingCommand from "../commands/ping.js";
 import SnipeCommand from "../commands/snipe.js";
 import InspireCommand from "../commands/inspire.js";
 import SetupCommand from "../commands/setup.js";
+import CryptoCommand from "../commands/crypto.js";
 
 const help = new HelpCommand();
 const info = new InfoCommand();
@@ -13,6 +14,7 @@ const ping = new PingCommand();
 const sniper = new SnipeCommand();
 const inspire = new InspireCommand();
 const setup = new SetupCommand();
+const crypto = new CryptoCommand();
 
 const commands = JSON.parse(fs.readFileSync("./data/bot/commands.json"));
 const executions = [
@@ -23,6 +25,7 @@ const executions = [
   [sniper.snipeEditedMessage, sniper],
   [info.getBotInformation, sniper],
   [setup.processSetupCommand, setup],
+  [crypto.sendCryptoData, crypto],
 ];
 
 class CommandProcessor {
