@@ -38,18 +38,22 @@ class CryptoCommand extends Command {
   }
 
   async sendCryptoData(object, message, args) {
-    const cryptoData = [];
-    const currency = args.length > 0 ? args[0] : "php";
-    for (let coin of object.coins)
-      cryptoData.push(await object.fetchCryptoData(coin.id, currency));
+    try {
+      const cryptoData = [];
+      const currency = args.length > 0 ? args[0] : "php";
+      for (let coin of object.coins)
+        cryptoData.push(await object.fetchCryptoData(coin.id, currency));
 
-    const description = await object.concatenateData(cryptoData, currency);
-    const embedOutput = new object.MessageEmbed()
-      .setColor(object.getRandomEmbedColor())
-      .setTitle("Cryptocurrency Values")
-      .setDescription(description)
-      .setFooter({ text: "Data fetched from CoinGecko" });
-    message.channel.send({ embeds: [embedOutput] });
+      const description = await object.concatenateData(cryptoData, currency);
+      const embedOutput = new object.MessageEmbed()
+        .setColor(object.getRandomEmbedColor())
+        .setTitle("Cryptocurrency Values")
+        .setDescription(description)
+        .setFooter({ text: "Data fetched from CoinGecko" });
+      message.channel.send({ embeds: [embedOutput] });
+    } catch (error) {
+      message.channel.send("Unsupported Command Arguments");
+    }
   }
 }
 
