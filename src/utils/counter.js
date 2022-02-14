@@ -70,7 +70,7 @@ class Counter {
   static checkCount(message) {
     this.setCountData(message);
     if (!dataIndex) return false;
-    const countable = "0123456789+-*/%".split();
+    const countable = "0123456789+-*/%().".split("");
     const playerMessage = message.content.split(" ").join("");
     for (let chr of playerMessage) if (!countable.includes(chr)) return false;
 

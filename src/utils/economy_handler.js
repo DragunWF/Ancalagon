@@ -5,15 +5,22 @@ let data = null;
 let dataIndex = null;
 
 class Economy {
-  static readEconomyData() {
+  static readEconomyData(external = false) {
     const jsonData = fs.readFileSync(fileLocation, "utf8");
     data = JSON.parse(jsonData);
+    if (external) return data;
   }
 
   static writeEconomyData() {
     fs.writeFile(fileLocation, JSON.stringify(data, null, 2), (error) => {
       if (error) console.log(error);
     });
+  }
+
+  static getDataIndex(id) {
+    for (let dataSet of data)
+      if (dataSet.id === id) return data.indexOf(dataSet);
+    return false;
   }
 
   static modifyUserCoins(user, amount, type) {
