@@ -5,19 +5,19 @@ class EconomyCommand extends Command {
   constructor() {
     super();
     this.data = null;
-    this.dataIndex = null;
+    this.index = null;
   }
 
-  scavenge(message) {
+  scavenge(object, message) {
     Economy.checkUser(message);
     const chance = Math.floor(Math.random() * 20) + 1;
     if (chance === 1) {
       const amount = Math.floor(Math.random() * (150 - 50) + 50);
-      Economy.modifyUserCoins(message, amount, "add");
+      Economy.modifyUserCoins(message, amount, "subtract");
       return `You tried to scavenge but lost **${amount} coins** instead!`;
     } else {
       const amount = Math.floor(Math.random() * (25 - 5) + 5);
-      Economy.modifyUserCoins(message, amount, "subtract");
+      Economy.modifyUserCoins(message, amount, "add");
       return `You have successfully scavenged **${amount} coins**!`;
     }
   }
@@ -25,8 +25,8 @@ class EconomyCommand extends Command {
   balance(object, message) {
     Economy.checkUser(message);
     object.data = Economy.readEconomyData(true);
-    object.dataIndex = Economy.getDataIndex(message.author.id);
-    const value = object.data[object.dataIndex].coins
+    object.index = Economy.getDataIndex(message.author.id);
+    const value = object.data[object.index].coins
       .toFixed(2)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -63,7 +63,7 @@ class EconomyCommand extends Command {
       .setColor(object.getRandomEmbedColor())
       .setTitle("Leaderboard In Dragon's Economy")
       .setDescription(output)
-      .setFooter({ text: "Richest users in Dragon's Economy" })
+      .setFooter({ text: "Richest users" })
       .setTimestamp();
     return { embeds: [embedOutput] };
   }
