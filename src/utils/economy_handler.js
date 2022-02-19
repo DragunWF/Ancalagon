@@ -7,15 +7,15 @@ let dataIndex = null;
 
 class Economy {
   static readEconomyData(external = false) {
-    const jsonData = fs.readFileSync(fileLocation, "utf8");
-    data = JSON.parse(jsonData);
-    if (external) return data;
+    const jsonData = JSON.parse(fs.readFileSync(fileLocation, "utf8"));
+    data = jsonData;
+    if (external) {
+      return jsonData;
+    }
   }
 
   static writeEconomyData() {
-    fs.writeFile(fileLocation, JSON.stringify(data, null, 2), (error) => {
-      if (error) console.log(error);
-    });
+    fs.writeFileSync(fileLocation, JSON.stringify(data, null, 2));
   }
 
   static getDataIndex(id) {
@@ -50,7 +50,6 @@ class Economy {
     if (data[dataIndex].tag !== authorTag) {
       data[dataIndex].tag = authorTag;
       this.writeEconomyData();
-      this.readEconomyData();
     }
   }
 
@@ -64,7 +63,6 @@ class Economy {
       }
     }
     this.registerUser(message);
-    this.checkUser(message);
   }
 }
 
