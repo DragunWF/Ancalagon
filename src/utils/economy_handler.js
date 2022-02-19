@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 const fileLocation = "./data/bot/economy.json";
 let data = null;
-let dataIndex = null;
+let index = null;
 
 class Economy {
   static readEconomyData(external = false) {
@@ -25,8 +25,11 @@ class Economy {
   }
 
   static modifyUserCoins(user, amount, type) {
+    this.readEconomyData();
     this.checkUser(user);
-    data[dataIndex].coins += type === "add" ? amount : -amount;
+    data[index].coins += type === "add" ? amount : -amount;
+    console.log(data[index].coins);
+    if (data[index].coins < 0) data[index].coins = 0;
     this.writeEconomyData();
   }
 
@@ -47,8 +50,8 @@ class Economy {
   }
 
   static checkTagChange(authorTag) {
-    if (data[dataIndex].tag !== authorTag) {
-      data[dataIndex].tag = authorTag;
+    if (data[index].tag !== authorTag) {
+      data[index].tag = authorTag;
       this.writeEconomyData();
     }
   }
@@ -57,7 +60,7 @@ class Economy {
     this.readEconomyData();
     for (let userData of data) {
       if (userData.id === message.author.id) {
-        dataIndex = data.indexOf(userData);
+        index = data.indexOf(userData);
         this.checkTagChange(message.author.tag);
         return;
       }
