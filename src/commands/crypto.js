@@ -20,8 +20,7 @@ class CryptoCommand extends Command {
         headers: { accept: "application/json" },
       }
     );
-    const data = await response.json();
-    return data;
+    return await response.json();
   }
 
   async concatenateData(array, currency) {
