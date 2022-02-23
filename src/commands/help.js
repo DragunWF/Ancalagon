@@ -45,19 +45,18 @@ class HelpCommand extends Command {
   }
 
   processHelpCommand(object, args) {
-    switch (args[0]) {
-      case "general":
-        return object.getGeneralCommandList();
-      case "economy":
-        return object.getEconomyCommandList();
-      case "game":
-      case "games":
-        return object.getGameCommandList();
-      case "meme":
-      case "memes":
-        return object.getMemeCommandList();
-    }
-    return object.getHelpCommandList();
+    const commandList = null;
+    if (args[0] == "general") 
+      commandList = object.getGeneralCommandList;
+    else if (args[0] == "economy") 
+      commandList = object.getEconomyCommandList;
+    else if (args[0] == "games" || args[0] == "game")
+      commandList = object.getGamesCommandList;
+    else if (args[0] == "memes" || args[0] == "meme")
+      commandList = object.getMemeCommandList;
+    else commandList = object.getHelpCommandList;
+
+    return commandList();
   }
 }
 
