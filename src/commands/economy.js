@@ -69,10 +69,17 @@ class EconomyCommand extends Command {
   }
 
   rulerModify(object, message, args, type) {
+    if (message.author.id !== "408972598798450688") {
+      message.channel.send(
+        "Only **DragonWF** himself can execute this command... nerd"
+      );
+      return;
+    }
     if (args.length < 2) {
       message.channel.send("You forgot to add an argument");
       return;
     }
+
     Economy.checkUser(args[0]);
     object.data = Economy.readEconomyData(true);
 
