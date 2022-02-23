@@ -65,7 +65,33 @@ class EconomyCommand extends Command {
       .setDescription(output)
       .setFooter({ text: "Richest users" })
       .setTimestamp();
-    return { embeds: [embedOutput] };
+    message.channel.send({ embeds: [embedOutput] });
+  }
+
+  rulerModify(object, message, args, type) {
+    if (args.length < 2) {
+      message.channel.send("You forgot to add an argument");
+      return;
+    }
+    Economy.checkUser(args[0]);
+    object.data = Economy.readEconomyData(true);
+
+    const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    let userId = [];
+    for (let chr of args[0])
+      for (let digit of digits) if (chr == digit) userId.push(digit);
+    userId = userId.join("");
+
+    Economy.modifyUserCoins(message, userId, type);
+    const amount = args[1]
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const response = [
+      `Congrats <@!${userId}>, you have been rewarded with **${amount} coins** by the great great DragonWF.`,
+      `Waw <@!${userId}>, seems like you were punished by the great DragonWF and lost **${amount} coins!**`,
+    ];
+    message.channel.send(type === "add" ? response[0] : response[1]);
   }
 }
 
