@@ -45,18 +45,18 @@ class HelpCommand extends Command {
   }
 
   processHelpCommand(object, message, args) {
-    const commandList = null;
+    let commandList = null;
     if (args[0] === "general" || args[0] === "gen")
-      commandList = object.getGeneralCommandList;
+      commandList = object.getGeneralCommandList();
     else if (args[0] === "economy" || args[0] === "eco")
-      commandList = object.getEconomyCommandList;
+      commandList = object.getEconomyCommandList();
     else if (args[0] === "games" || args[0] === "game")
-      commandList = object.getGamesCommandList;
+      commandList = object.getGamesCommandList();
     else if (args[0] === "memes" || args[0] === "meme")
-      commandList = object.getMemeCommandList;
-    else commandList = object.getHelpCommandList;
+      commandList = object.getMemeCommandList();
+    else commandList = object.getHelpCommandList();
 
-    message.channel.send(commandList());
+    message.channel.send(commandList);
   }
 }
 

@@ -15,7 +15,7 @@ class InfoCommand extends Command {
     super();
   }
 
-  getBotInformation(object) {
+  getBotInformation(object, message) {
     const embedOutput = new object.MessageEmbed()
       .setColor(object.mainColor)
       .setAuthor({
@@ -30,7 +30,7 @@ class InfoCommand extends Command {
         "https://cdn.discordapp.com/avatars/939435166034722827/73ead4510886bc2ecfd08b7147b07d17.webp"
       )
       .setFooter({ text: "Have a nice day!" });
-    return { embeds: [embedOutput] };
+    message.channel.send({ embeds: [embedOutput] });
   }
 }
 

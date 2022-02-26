@@ -56,12 +56,11 @@ class CommandProcessor {
     for (let cmd of commands) {
       if (cmd.alias.includes(commandName.toLowerCase())) {
         parameters.push(cmd.object);
-        parameters.push(cmd.command);
+        parameters.push(command);
         if (cmd.hasArgs) parameters.push(args);
         cmd.execution(...parameters);
       }
     }
-    return false;
   }
 }
 
