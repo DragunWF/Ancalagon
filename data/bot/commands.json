@@ -8,40 +8,30 @@
   {
     "alias": "help",
     "hasArgs": true,
-    "hasMsgParameter": false,
-    "isAsync": false,
     "execution": "",
     "object": null
   },
   {
     "alias": "inspire",
     "hasArgs": false,
-    "hasMsgParameter": true,
-    "isAsync": true,
     "execution": "",
     "object": null
   },
   {
     "alias": "snipe",
     "hasArgs": false,
-    "hasMsgParameter": false,
-    "isAsync": false,
     "execution": "",
     "object": null
   },
   {
     "alias": ["esnipe", "editsnipe"],
     "hasArgs": false,
-    "hasMsgParameter": false,
-    "isAsync": false,
     "execution": "",
     "object": null
   },
   {
     "alias": ["info", "information"],
     "hasArgs": false,
-    "hasMsgParameter": false,
-    "isAsync": false,
     "execution": "",
     "object": null
   },
@@ -54,8 +44,6 @@
   {
     "alias": ["nft", "crypto", "cryptocurrency"],
     "hasArgs": true,
-    "hasMsgParameter": true,
-    "isAsync": true,
     "execution": "",
     "object": null
   },
