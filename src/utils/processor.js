@@ -56,9 +56,8 @@ class CommandProcessor {
     for (let cmd of commands) {
       if (cmd.alias.includes(commandName.toLowerCase())) {
         parameters.push(cmd.object);
-        if (cmd.hasMsgParameter) parameters.push(command);
+        parameters.push(cmd.command);
         if (cmd.hasArgs) parameters.push(args);
-        if (!cmd.isAsync) return cmd.execution(...parameters);
         cmd.execution(...parameters);
       }
     }
