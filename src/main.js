@@ -23,10 +23,8 @@ client.on("messageCreate", (message) => {
   if (message.author.bot) return;
   MessageLogger.logCreatedMessage(message);
 
-  if (message.content.startsWith(prefix)) {
-    const output = CommandProcessor.processCommand(message, prefix);
-    if (output) message.channel.send(output);
-  }
+  if (message.content.startsWith(prefix))
+    CommandProcessor.processCommand(message, prefix);
 
   Counter.checkCount(message);
   const response = KeyWordResponder.checkMessage(message.content);
