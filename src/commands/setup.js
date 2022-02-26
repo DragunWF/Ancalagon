@@ -61,11 +61,8 @@ class SetupCommand extends Command {
   }
 
   processSetupCommand(object, message, args) {
-    switch (args[0]) {
-      case "count":
-      case "counting":
-        return object.setupCounting(message);
-    }
+    if (args[0] === "counting" || args[0] === "count")
+      return object.setupCounting(message);
     return false;
   }
 }
