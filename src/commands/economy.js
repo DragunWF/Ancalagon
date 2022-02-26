@@ -14,11 +14,15 @@ class EconomyCommand extends Command {
     if (chance === 1) {
       const amount = Math.floor(Math.random() * (150 - 50) + 50);
       Economy.modifyUserCoins(message, amount, "subtract");
-      return `You tried to scavenge but lost **${amount} coins** instead!`;
+      message.channel.send(
+        `You tried to scavenge but lost **${amount} coins** instead!`
+      );
     } else {
       const amount = Math.floor(Math.random() * (25 - 5) + 5);
       Economy.modifyUserCoins(message, amount, "add");
-      return `You have successfully scavenged **${amount} coins**!`;
+      message.channel.send(
+        `You have successfully scavenged **${amount} coins**!`
+      );
     }
   }
 

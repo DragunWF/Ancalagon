@@ -36,12 +36,14 @@ class SnipeCommand extends Command {
         .setDescription(object.deletedMessage.content)
         .setTimestamp()
         .setFooter({ text: "Deleted message" });
-      return { embeds: [embedOutput] };
+      message.channel.send({ embeds: [embedOutput] });
     }
-    return responses[Math.floor(Math.random() * responses.length)];
+    message.channel.send(
+      responses[Math.floor(Math.random() * responses.length)]
+    );
   }
 
-  snipeEditedMessage(object) {
+  snipeEditedMessage(object, message) {
     const responses = [
       "No edited message to snipe sadly.",
       "There are no edited messages to snipe!",
@@ -60,9 +62,11 @@ class SnipeCommand extends Command {
         .setDescription(object.originalMessage.content)
         .setTimestamp()
         .setFooter({ text: "Unedited message" });
-      return { embeds: [embedOutput] };
+      message.channel.send({ embeds: [embedOutput] });
     }
-    return responses[Math.floor(Math.random() * responses.length)];
+    message.channel.send(
+      responses[Math.floor(Math.random() * responses.length)]
+    );
   }
 }
 

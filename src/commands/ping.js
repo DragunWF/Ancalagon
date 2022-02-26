@@ -13,7 +13,7 @@ class PingCommand extends Command {
         name: "Pong!",
       })
       .setDescription(`Ping: **${ping}ms** :ping_pong:`);
-    return { embeds: [embedOutput] };
+    message.channel.send({ embeds: [embedOutput] });
   }
 }
 

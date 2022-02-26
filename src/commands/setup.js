@@ -62,8 +62,7 @@ class SetupCommand extends Command {
 
   processSetupCommand(object, message, args) {
     if (args[0] === "counting" || args[0] === "count")
-      return object.setupCounting(message);
-    return false;
+      message.channel.send(object.setupCounting(message));
   }
 }
 

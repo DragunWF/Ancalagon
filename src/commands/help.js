@@ -44,7 +44,7 @@ class HelpCommand extends Command {
     return "**In Construction**";
   }
 
-  processHelpCommand(object, args) {
+  processHelpCommand(object, message, args) {
     const commandList = null;
     if (args[0] === "general" || args[0] === "gen")
       commandList = object.getGeneralCommandList;
@@ -56,7 +56,7 @@ class HelpCommand extends Command {
       commandList = object.getMemeCommandList;
     else commandList = object.getHelpCommandList;
 
-    return commandList();
+    message.channel.send(commandList());
   }
 }
 
