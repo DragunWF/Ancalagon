@@ -42,7 +42,9 @@
 
 ### Economy Commands
 
-- **In Development**
+- `$bal`
+- `$leaderboard`
+- `$scavenge`
 
 ---
 
