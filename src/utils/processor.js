@@ -31,6 +31,8 @@ const executions = [
   [economy.scavenge, economy],
   [economy.balance, economy],
   [economy.leaderboard, economy],
+  [economy.rulerModify, economy],
+  [economy.rulerModify, economy],
 ];
 
 class CommandProcessor {
@@ -46,6 +48,15 @@ class CommandProcessor {
     }
   }
 
+  static checkSpecialCommand(command) {
+    const specialCommands = ["reward", "punish"];
+    if (specialCommands.includes(command)) {
+      if (command === "reward") return "add";
+      if (command === "punish") return "subtract";
+    }
+    return false;
+  }
+
   static processCommand(command, prefix) {
     const [commandName, ...args] = command.content
       .trim()
@@ -55,9 +66,11 @@ class CommandProcessor {
     const parameters = [];
     for (let cmd of commands) {
       if (cmd.alias.includes(commandName.toLowerCase())) {
+        const special = this.checkSpecialCommand(commandName);
         parameters.push(cmd.object);
         parameters.push(command);
         if (cmd.hasArgs) parameters.push(args);
+        if (special) parameters.push(special);
         cmd.execution(...parameters);
       }
     }
