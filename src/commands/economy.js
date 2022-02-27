@@ -52,7 +52,7 @@ class EconomyCommand extends Command {
     for (let userData of object.data)
       dataSets.push({ tag: userData.tag, coins: userData.coins });
     dataSets.sort((a, b) => {
-      return a.coins - b.coins;
+      return b.coins - a.coins;
     });
 
     let output = "";
