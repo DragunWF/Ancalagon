@@ -64,5 +64,11 @@
     "hasArgs": false,
     "execution": "",
     "object": null
+  },
+  {
+    "alias": ["reward"],
+    "hasArgs": true,
+    "execution": "",
+    "object": null
   }
 ]
