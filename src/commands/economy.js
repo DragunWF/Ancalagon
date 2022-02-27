@@ -57,9 +57,11 @@ class EconomyCommand extends Command {
 
     let output = "";
     for (let i = 0; i < dataSets.length; i++) {
-      output += `**#${i + 1}:** ${dataSets[i].tag} - \`${
-        dataSets[i].coins
-      } coins\`\n`;
+      const coins = dataSets[i].coins
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      output += `**#${i + 1}:** ${dataSets[i].tag} - \`${coins} coins\`\n`;
       if (i + 1 >= 10) break;
     }
 
