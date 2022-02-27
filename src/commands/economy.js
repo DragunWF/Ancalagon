@@ -73,36 +73,37 @@ class EconomyCommand extends Command {
   }
 
   rulerModify(object, message, args, type) {
+    const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    let userId = [];
+    for (let chr of args[0]) if (digits.includes(chr)) userId.push(chr);
+    userId = userId.join("");
+
+    for (let chr of args[1].split("")) {
+      if (!digits.includes(chr)) {
+        message.channel.send("The amount must be an integer");
+        return;
+      }
+    }
+
     if (message.author.id !== "408972598798450688") {
       message.channel.send(
         "Only **DragonWF** himself can execute this command... nerd"
       );
-      return;
-    }
-    if (args.length < 2) {
+    } else if (args.length < 2) {
       message.channel.send("You forgot to add an argument");
-      return;
+    } else if (typeof Economy.getDataIndex(userId) !== "number") {
+      message.channel.send("The player you're targeting isn't registered");
+    } else {
+      object.data = Economy.readEconomyData(true);
+
+      Economy.modifyUserCoins(message, Number(args[1]), type);
+      const amount = args[1].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      const response = [
+        `Congrats <@!${userId}>, you have been rewarded with **${amount} coins** by the great great DragonWF.`,
+        `Waw <@!${userId}>, seems like you were punished by the great DragonWF and lost **${amount} coins!**`,
+      ];
+      message.channel.send(type === "add" ? response[0] : response[1]);
     }
-
-    Economy.checkUser(args[0]);
-    object.data = Economy.readEconomyData(true);
-
-    const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    let userId = [];
-    for (let chr of args[0])
-      for (let digit of digits) if (chr == digit) userId.push(digit);
-    userId = userId.join("");
-
-    Economy.modifyUserCoins(message, userId, type);
-    const amount = args[1]
-      .toFixed(2)
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const response = [
-      `Congrats <@!${userId}>, you have been rewarded with **${amount} coins** by the great great DragonWF.`,
-      `Waw <@!${userId}>, seems like you were punished by the great DragonWF and lost **${amount} coins!**`,
-    ];
-    message.channel.send(type === "add" ? response[0] : response[1]);
   }
 }
 
