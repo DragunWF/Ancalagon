@@ -24,10 +24,10 @@ class HelpCommand extends Command {
   }
 
   getGeneralCommandList() {
-    const commands = ["info", "ping", "inspire", "snipe", "esnipe"];
+    const commands = ["info", "ping", "inspire", "crypto", "snipe", "esnipe"];
     const embedOutput = new this.MessageEmbed()
       .setColor(this.mainColor)
-      .setTitle("General Command List :tools:")
+      .setTitle("General Command List 🛠️")
       .setDescription(this.concatenateCommands(commands, false));
     return { embeds: [embedOutput] };
   }
@@ -41,7 +41,12 @@ class HelpCommand extends Command {
   }
 
   getEconomyCommandList() {
-    return "**In Construction**";
+    const commands = ["bal", "scavenge", "leaderboard"];
+    const embedOutput = new this.MessageEmbed()
+      .setColor(this.mainColor)
+      .setTitle("Economy Command List 💰")
+      .setDescription(this.concatenateCommands(commands, false));
+    return { embeds: [embedOutput] };
   }
 
   processHelpCommand(object, message, args) {
