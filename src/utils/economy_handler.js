@@ -19,6 +19,7 @@ class Economy {
   }
 
   static getDataIndex(id) {
+    this.readEconomyData();
     for (let dataSet of data)
       if (dataSet.id === id) return data.indexOf(dataSet);
     return false;
