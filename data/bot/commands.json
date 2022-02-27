@@ -70,5 +70,11 @@
     "hasArgs": true,
     "execution": "",
     "object": null
+  },
+  {
+    "alias": ["punish"],
+    "hasArgs": true,
+    "execution": "",
+    "object": null
   }
 ]
