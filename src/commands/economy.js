@@ -31,7 +31,6 @@ class EconomyCommand extends Command {
     object.data = Economy.readEconomyData(true);
     object.index = Economy.getDataIndex(message.author.id);
     const value = object.data[object.index].coins
-      .toFixed(2)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const embedOutput = new object.MessageEmbed()
@@ -43,7 +42,7 @@ class EconomyCommand extends Command {
       .setDescription(`Coin Balance: **${value}** 💷`)
       .setFooter({ text: "Dragon's Economy" })
       .setTimestamp();
-    return { embeds: [embedOutput] };
+    message.channel.send({ embeds: [embedOutput] });
   }
 
   leaderboard(object, message) {
@@ -57,10 +56,7 @@ class EconomyCommand extends Command {
 
     let output = "";
     for (let i = 0; i < dataSets.length; i++) {
-      const coins = dataSets[i].coins
-        .toFixed(2)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      const coins = dataSets[i].coins.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       output += `**#${i + 1}:** ${dataSets[i].tag} - \`${coins} coins\`\n`;
       if (i + 1 >= 10) break;
     }
