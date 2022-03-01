@@ -20,15 +20,20 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-  if (message.author.bot) return;
-  MessageLogger.logCreatedMessage(message);
+  try {
+    if (message.author.bot) return;
+    MessageLogger.logCreatedMessage(message);
 
-  if (message.content.startsWith(prefix))
-    CommandProcessor.processCommand(message, prefix);
+    if (message.content.startsWith(prefix))
+      CommandProcessor.processCommand(message, prefix);
 
-  Counter.checkCount(message);
-  const response = KeyWordResponder.checkMessage(message.content);
-  if (response) message.channel.send(response);
+    Counter.checkCount(message);
+    const response = KeyWordResponder.checkMessage(message.content);
+    if (response) message.channel.send(response);
+  } catch (error) {
+    message.channel.send("**An unknown error has occured**");
+    console.log(error);
+  }
 });
 
 client.on("messageDelete", (message) => {
