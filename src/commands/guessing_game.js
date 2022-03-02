@@ -12,14 +12,16 @@ class GuessingGame {
       message.channel.send("Number must be from 1 to 100!");
     } else {
       if (number < this.correctNumber) {
-        if (this.correctNumber - number <= 3)
+        message.react("❌");
+        if (Math.abs(this.correctNumber - number) <= 3)
           message.channel.send("A tiny bit low.");
         else message.channel.send("Too low!");
         return false;
       }
 
       if (number > this.correctNumber) {
-        if (this.correctNumber - number <= 3)
+        message.react("❌");
+        if (Math.abs(this.correctNumber - number) <= 3)
           message.channel.send("A tiny bit high.");
         else message.channel.send("Too high!");
         return false;
@@ -39,6 +41,7 @@ class GuessingGame {
           )
           .setFooter({ text: "Thanks for playing!" })
           .setTimestamp();
+        message.react("✅");
         message.channel.send({ embeds: [embed] });
         return true;
       }
@@ -61,7 +64,7 @@ class GuessCommand extends Command {
   processCommand(object, message) {
     if (object.startGuessingGame(message.author.id)) {
       const embed = new object.MessageEmbed()
-        .setColor(object.getRandomEmbedColor())
+        .setColor(object.mainColor)
         .setTitle("Guessing Game Initialized")
         .setDescription(
           "Welcome to a game where you try to guess the correct number from 1 to 100! " +
@@ -72,8 +75,14 @@ class GuessCommand extends Command {
         .setTimestamp();
       message.reply({ embeds: [embed] });
     } else {
-      message.channel.send("You already in a game! Type $end to end it.");
+      message.channel.send("You're already in a game! Type `$end` to end it.");
     }
+  }
+}
+
+class GuessingHandler {
+  static main() {
+    return;
   }
 }
 
