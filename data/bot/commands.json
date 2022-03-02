@@ -76,5 +76,11 @@
     "hasArgs": true,
     "execution": "",
     "object": null
+  },
+  {
+    "alias": ["gg", "guessinggame", "guess"],
+    "hasArgs": false,
+    "execution": "",
+    "object": null
   }
 ]
