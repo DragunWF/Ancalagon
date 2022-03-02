@@ -33,7 +33,7 @@ class GuessingGame {
             `\`Retries:\` ${this.retries} 
             ${
               this.retries == 0
-                ? "Congrats"
+                ? "Congrats, you have guessed the correct number!"
                 : "You are blessed by the RNG gods!"
             }`
           )
