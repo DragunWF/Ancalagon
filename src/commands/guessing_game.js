@@ -1,4 +1,5 @@
 import Command from "../utils/command.js";
+import Economy from "../utils/economy_handler.js"; // For game rewards
 
 class GuessingGame {
   constructor(id) {
@@ -8,8 +9,8 @@ class GuessingGame {
   }
 
   checkNumber(message, number) {
-    if (number > 100 || number <= 0) {
-      message.channel.send("Number must be from 1 to 100!");
+    if (number > 100 || number < 1) {
+      message.channel.send("Guess must be a number must be from 1 to 100!");
     } else {
       if (number < this.correctNumber) {
         message.react("❌");
@@ -49,14 +50,15 @@ class GuessingGame {
   }
 }
 
-class GuessCommand extends Command {
+export class GuessCommand extends Command {
   constructor() {
     super();
     this.games = [];
   }
 
   startGuessingGame(id) {
-    if (this.games) for (let game of games) if (game.id === id) return false;
+    if (this.games.length > 0)
+      for (let game of games) if (game.id === id) return false;
     this.games.push(new GuessingGame(id));
     return true;
   }
@@ -80,10 +82,27 @@ class GuessCommand extends Command {
   }
 }
 
-class GuessingHandler {
-  static main() {
+export class GuessingHandler {
+  static rewardPlayer() {
     return;
   }
-}
 
-export default GuessCommand;
+  static checkNumberValidity(content) {
+    const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    for (let chr of content.split("")) if (!digits.includes(chr)) return false;
+    return true;
+  }
+
+  static checkGame(container, message) {
+    if (this.checkNumberValidity(message.content)) {
+      let index = null;
+      if (container.games.length > 0) {
+        for (let game of container.games) {
+          if (game.id === id) index = container.games.indexOf(game);
+          container.games[index].checkNumber(message, message.content);
+          break;
+        }
+      }
+    }
+  }
+}
