@@ -33,7 +33,12 @@ class HelpCommand extends Command {
   }
 
   getGameCommandList() {
-    return "Only command here is `$setup counting`. More will be added in the future";
+    const commands = ["guess `- Initializes Guess the Number game`"];
+    const embedOutput = new this.MessageEmbed()
+      .setColor(this.mainColor)
+      .setTitle("Game Command List 🎲")
+      .setDescription(this.concatenateCommands(commands, false));
+    return { embeds: [embedOutput] };
   }
 
   getMemeCommandList() {
