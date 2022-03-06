@@ -28,6 +28,7 @@ client.on("messageCreate", (message) => {
       CommandProcessor.processCommand(message, prefix);
 
     Counter.checkCount(message);
+    CommandProcessor.updateGame(message, "guessingGame");
     const response = KeyWordResponder.checkMessage(message.content);
     if (response) message.channel.send(response);
   } catch (error) {
@@ -49,4 +50,4 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 keepServerRunning();
-client.login(process.env.TOKEN);
+client.login(process.env.T);
