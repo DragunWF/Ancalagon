@@ -34,6 +34,7 @@
 
 ### Game Commands
 
+- `$gg` - To start a "Guess the Number" game.
 - `$setup counting`
 
 ### Meme Commands
