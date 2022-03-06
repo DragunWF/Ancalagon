@@ -29,7 +29,6 @@ class Economy {
     this.readEconomyData();
     this.checkUser(user);
     data[index].coins += type === "add" ? amount : -amount;
-    console.log(data[index].coins);
     if (data[index].coins < 0) data[index].coins = 0;
     this.writeEconomyData();
   }
@@ -67,6 +66,18 @@ class Economy {
       }
     }
     this.registerUser(message);
+  }
+
+  static gameReward(user, gameType) {
+    this.readEconomyData();
+    this.checkUser(user);
+    const ranges = { guessingGame: [100, 250] };
+    const amount = Math.floor(
+      Math.random() * (ranges[gameType][1] - ranges[gameType][0]) +
+        ranges[gameType][0]
+    );
+    this.modifyUserCoins(user, amount, "add");
+    return amount;
   }
 }
 
