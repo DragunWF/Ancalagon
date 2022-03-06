@@ -9,6 +9,8 @@ import SetupCommand from "../commands/setup.js";
 import CryptoCommand from "../commands/crypto.js";
 import EconomyCommand from "../commands/economy.js";
 
+import { GuessCommand, GuessingHandler } from "../commands/guessing_game.js";
+
 const help = new HelpCommand();
 const info = new InfoCommand();
 const ping = new PingCommand();
@@ -17,6 +19,7 @@ const inspire = new InspireCommand();
 const setup = new SetupCommand();
 const crypto = new CryptoCommand();
 const economy = new EconomyCommand();
+const guess = new GuessCommand();
 
 const commands = JSON.parse(fs.readFileSync("./data/bot/commands.json"));
 const executions = [
@@ -33,9 +36,17 @@ const executions = [
   [economy.leaderboard, economy],
   [economy.rulerModify, economy],
   [economy.rulerModify, economy],
+  [guess.processCommand, guess],
 ];
 
 class CommandProcessor {
+  static updateGame(message, gameType) {
+    switch (gameType) {
+      case "guessingGame":
+        GuessingHandler.checkGame(guess, message);
+    } // More games will be added in the future
+  }
+
   static configureSniper(message, type) {
     if (type === "deletedMessage") sniper.storeDeletedMessage(message);
     else sniper.storeOriginalMessage(message);
