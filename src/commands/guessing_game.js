@@ -1,5 +1,5 @@
 import Command from "../utils/command.js";
-import Economy from "../utils/economy_handler.js"; // For game rewards
+import Economy from "../utils/economy_handler.js";
 
 class GuessingGame extends Command {
   constructor(id) {
@@ -11,7 +11,7 @@ class GuessingGame extends Command {
 
   checkNumber(message, number) {
     if (number > 100 || number < 1) {
-      message.react("❌");
+      message.react("🚫");
       message.channel.send("Guess must be a number must be from 1 to 100!");
     } else {
       if (number < this.correctNumber) {
