@@ -50,4 +50,4 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 keepServerRunning();
-client.login(process.env.T);
+client.login(process.env.TOKEN);
