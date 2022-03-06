@@ -1,8 +1,9 @@
 import Command from "../utils/command.js";
 import Economy from "../utils/economy_handler.js"; // For game rewards
 
-class GuessingGame {
+class GuessingGame extends Command {
   constructor(id) {
+    super();
     this.id = id;
     this.correctNumber = Math.floor(Math.random() * 100) + 1;
     this.retries = 0;
@@ -10,10 +11,12 @@ class GuessingGame {
 
   checkNumber(message, number) {
     if (number > 100 || number < 1) {
+      message.react("❌");
       message.channel.send("Guess must be a number must be from 1 to 100!");
     } else {
       if (number < this.correctNumber) {
         message.react("❌");
+        this.retries++;
         if (Math.abs(this.correctNumber - number) <= 3)
           message.channel.send("A tiny bit low.");
         else message.channel.send("Too low!");
@@ -22,6 +25,7 @@ class GuessingGame {
 
       if (number > this.correctNumber) {
         message.react("❌");
+        this.retries++;
         if (Math.abs(this.correctNumber - number) <= 3)
           message.channel.send("A tiny bit high.");
         else message.channel.send("Too high!");
@@ -29,16 +33,18 @@ class GuessingGame {
       }
 
       if (number == this.correctNumber) {
+        const rewardAmount = Economy.gameReward(message, "guessingGame");
         const embed = new this.MessageEmbed()
           .setColor(this.getRandomEmbedColor())
-          .setTitle("End Result Stats")
+          .setTitle("Congrats, you have guessed the correct number!")
           .setDescription(
-            `\`Retries:\` ${this.retries} 
+            `\`Retries:\` **${this.retries}** 
             ${
               this.retries == 0
-                ? "Congrats, you have guessed the correct number!"
-                : "You are blessed by the RNG gods!"
-            }`
+                ? "You are blessed by the RNG gods, You guessed the correct number with no retries!"
+                : "Congrats, you have guessed the correct number!"
+            }
+            You have been rewarded with **${rewardAmount} coins!**`
           )
           .setFooter({ text: "Thanks for playing!" })
           .setTimestamp();
@@ -57,7 +63,7 @@ export class GuessCommand extends Command {
   }
 
   startGuessingGame(id) {
-    if (this.games.length > 0)
+    if (this.games.length)
       for (let game of games) if (game.id === id) return false;
     this.games.push(new GuessingGame(id));
     return true;
@@ -83,10 +89,6 @@ export class GuessCommand extends Command {
 }
 
 export class GuessingHandler {
-  static rewardPlayer() {
-    return;
-  }
-
   static checkNumberValidity(content) {
     const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     for (let chr of content.split("")) if (!digits.includes(chr)) return false;
@@ -96,10 +98,12 @@ export class GuessingHandler {
   static checkGame(container, message) {
     if (this.checkNumberValidity(message.content)) {
       let index = null;
-      if (container.games.length > 0) {
+      if (container.games.length) {
         for (let game of container.games) {
-          if (game.id === id) index = container.games.indexOf(game);
-          container.games[index].checkNumber(message, message.content);
+          if (game.id === message.author.id)
+            index = container.games.indexOf(game);
+          if (container.games[index].checkNumber(message, message.content))
+            container.games.splice(index, 1);
           break;
         }
       }
