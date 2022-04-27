@@ -1,5 +1,9 @@
 # Ancalagon Bot
 
+![GitHub top language](https://img.shields.io/github/languages/top/DragunWF/Ancalagon)
+![Lines of code](https://img.shields.io/tokei/lines/github/DragunWF/Ancalagon)
+![GitHub repo size](https://img.shields.io/github/repo-size/DragunWF/Ancalagon)
+
 ### Description
 
 - Hello! This is a discord bot for my personal discord server. It's more of a remaster
