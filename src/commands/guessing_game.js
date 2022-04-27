@@ -2,6 +2,7 @@ import Command from "../utils/command.js";
 import Economy from "../utils/economy_handler.js";
 
 class GuessingGame extends Command {
+  // Extended to Command class for MessageEmbed()
   constructor(id) {
     super();
     this.id = id;
